@@ -14,7 +14,7 @@ from langchain import PromptTemplate
 
 # Page title
 st.set_page_config(page_title='EmailCreator')
-st.title('ProjectP')
+st.title('ProjectP0.1')
 
 # Text input
 nombrep = st.text_input(
