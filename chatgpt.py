@@ -9,9 +9,6 @@ import time
 
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
 
-#Definir PromptTemplate
-from langchain import PromptTemplate
-
 # Page title
 #st.set_page_config(page_title='EmailCreator')
 #st.title('ProjectP0.1')
@@ -19,13 +16,6 @@ with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
     constants.APIKEY=openai_api_key
     os.environ["OPENAI_API_KEY"] = constants.APIKEY
-
-st.set_page_config(
-    page_title="GPT Lab",
-    page_icon="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=gptLAb"#,
-    #menu_items={"About": "GPT Lab is a user-friendly app that allows anyone to interact with and create their own AI Assistants powered by OpenAI's GPT-3 language model. Our goal is to make AI accessible and easy to use for everyone, so you can focus on designing your Assistant without worrying about the underlying infrastructure.", "Get help": None, "Report a Bug": None}
-)
-
 
 
 # copies 
