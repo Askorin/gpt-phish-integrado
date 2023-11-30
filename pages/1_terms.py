@@ -1,5 +1,4 @@
 import streamlit as st 
-import app_component as au
 
 st.set_page_config(
     page_title="GPT Lab - Terms",
@@ -17,9 +16,7 @@ with st.sidebar:
     - [Terms of Use](#terms-of-use)
     - [Privacy Policy](#privacy-policy)
     ---
-    ''', unsafe_allow_html=True)
-
-au.render_cta()    
+    ''', unsafe_allow_html=True)   
 
 st.title("Terms")
 st.write("Last updated: 2023-06-06")
