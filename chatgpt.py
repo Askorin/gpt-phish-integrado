@@ -15,7 +15,8 @@ from langchain import PromptTemplate
 # Page title
 st.set_page_config(page_title='EmailCreator')
 st.title('ProjectP0.1')
-
+with st.sidebar:
+    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 # Text input
 nombrep = st.text_input(
         "Nombre y Apellidos",
