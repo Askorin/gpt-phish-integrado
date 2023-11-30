@@ -17,6 +17,8 @@ st.set_page_config(page_title='EmailCreator')
 st.title('ProjectP0.1')
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    constants.APIKEY=openai_api_key
+    os.environ["OPENAI_API_KEY"] = constants.APIKEY
 # Text input
 nombrep = st.text_input(
         "Nombre y Apellidos",
