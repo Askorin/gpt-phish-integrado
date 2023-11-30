@@ -1,0 +1,12 @@
+Nombre: Miguel Ángel Soto
+RUT: 18.765.432-9
+Correo electrónico: miguel.soto@gmail.com
+Dirección domiciliaria en Chile: Av. Colón 1234, Depto. 56, Talcahuano, Región del Biobío
+Fecha de nacimiento: 15 de agosto de 1995
+Número de teléfono: +56 9 8765 4321
+Género: Masculino
+Redes sociales que usaría: Facebook, Instagram, Twitter y LinkedIn
+Trabajo: Ingeniero civil industrial
+Experiencia laboral: 3 años trabajando en una empresa de consultoría en proyectos de optimización de procesos, gestión de calidad y mejora continua. Ha participado en diversos proyectos para clientes de distintos rubros, como minería, energía, salud y educación.
+Habilidades: Dominio de herramientas informáticas como Excel, PowerPoint, Word, Project y Visio. Conocimiento de metodologías como Lean Six Sigma, Kaizen y PDCA. Capacidad de análisis, resolución de problemas, trabajo en equipo y comunicación efectiva.
+Intereses: Le gusta leer libros de negocios, innovación y desarrollo personal. Disfruta de viajar, conocer nuevas culturas y aprender idiomas. Practica deportes como fútbol, tenis y natación.
