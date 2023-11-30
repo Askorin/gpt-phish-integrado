@@ -19,10 +19,10 @@ with st.sidebar:
 
 
 # copies 
-home_title = "GPT Lab"
+home_title = "PhishingLab"
 home_introduction = "Welcome to GPT Lab, where the power of OpenAI's GPT technology is at your fingertips. Socialize with pre-trained AI Assistants in the Lounge or create your own custom AI companions in the Lab. Whether you need a personal helper, writing partner, or more, GPT Lab has you covered. Join now and start exploring the endless possibilities!"
 home_privacy = "At GPT Lab, your privacy is our top priority. To protect your personal information, our system only uses the hashed value of your OpenAI API Key, ensuring complete privacy and anonymity. Your API key is only used to access AI functionality during each visit, and is not stored beyond that time. This means you can use GPT Lab with peace of mind, knowing that your data is always safe and secure."
-
+home_getstarted = "Ready to explore the endless possibilities of AI? Review and agree to our Terms of Use and Privacy Policy, available on our Terms page. By signing in, you confirm that you have read and agreed to our policies. Let's get started today!"
 st.markdown(
     "<style>#MainMenu{visibility:hidden;}</style>",
     unsafe_allow_html=True
@@ -40,6 +40,8 @@ st.write(home_introduction)
 st.markdown("#### Privacy")
 st.write(home_privacy)
 
+st.markdown("#### Get Started")
+st.write(home_getstarted)
 st.markdown("""\n""")
 st.markdown("""\n""")
 
