@@ -42,7 +42,9 @@ st.write(home_privacy)
 
 st.markdown("#### Comenzar")
 st.write(home_getstarted)
-agree = st.checkbox('I agree')
+agree = st.checkbox('He leído y acepto los términos y condiciones de uso')
+if agree:
+    st.write('Perfecto!')
 st.markdown("""\n""")
 st.markdown("""\n""")
 
