@@ -47,12 +47,14 @@ st.markdown("""\n""")
 st.markdown("""\n""")
 
 # Text input
-nombrep = st.text_input(
-        "Nombre y Apellidos",
-        None,
-        key="nombrep",
-        placeholder="Ej: Cristóbal González Muñoz",
-        label_visibility="visible")
+uso_nombre = st.checkbox('Usar nombre')
+if uso_nombre:
+        nombrep = st.text_input(
+                "Nombre y Apellidos",
+                None,
+                key="nombrep",
+                placeholder="Ej: Cristóbal González Muñoz",
+                label_visibility="visible")
 
 correop = st.text_input(
         "Correo electrónico",
