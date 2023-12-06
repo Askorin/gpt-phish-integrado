@@ -20,9 +20,9 @@ with st.sidebar:
 
 # copies 
 home_title = "PhishingLab"
-home_introduction = "Welcome to GPT Lab, where the power of OpenAI's GPT technology is at your fingertips. Socialize with pre-trained AI Assistants in the Lounge or create your own custom AI companions in the Lab. Whether you need a personal helper, writing partner, or more, GPT Lab has you covered. Join now and start exploring the endless possibilities!"
-home_privacy = "At GPT Lab, your privacy is our top priority. To protect your personal information, our system only uses the hashed value of your OpenAI API Key, ensuring complete privacy and anonymity. Your API key is only used to access AI functionality during each visit, and is not stored beyond that time. This means you can use GPT Lab with peace of mind, knowing that your data is always safe and secure."
-home_getstarted = "Ready to explore the endless possibilities of AI? Review and agree to our Terms of Use and Privacy Policy, available on our Terms page. By signing in, you confirm that you have read and agreed to our policies. Let's get started today!"
+home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. Solo tienes que introducir los datos que creas que filtras con mayor facilidad y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes y peligrosos. Úsala con precaución y aprende a identificar y evitar los correos phishing."
+home_privacy = "En PhishingLab, tu privacidad es nuestra máxima prioridad. Tu información personal no es almacenada de ningún tipo, apenas generas un correo todo se elimina, asegurando una completa privacidad y anonimato. Esto significa que puedes usar GPT Lab con tranquilidad, sabiendo que tus datos siempre están seguros y protegidos."
+home_getstarted = "¿Listo para explorar las infinitas posibilidades de la IA? Revise y acepte nuestros Términos de uso y Política de privacidad, disponibles en nuestra página de Términos. Al marcar la casilla, confirma que ha leído y aceptado nuestras políticas. ¡Empecemos!"
 st.markdown(
     "<style>#MainMenu{visibility:hidden;}</style>",
     unsafe_allow_html=True
@@ -32,15 +32,15 @@ st.markdown(
 st.markdown(f"""# {home_title} <span style=color:#2E9BF5><font size=5>Beta</font></span>""",unsafe_allow_html=True)
 
 st.markdown("""\n""")
-st.markdown("#### Greetings")
+st.markdown("#### Saludos")
 st.write(home_introduction)
 
 #st.markdown("---")
 
-st.markdown("#### Privacy")
+st.markdown("#### Privacidad")
 st.write(home_privacy)
 
-st.markdown("#### Get Started")
+st.markdown("#### Comenzar")
 st.write(home_getstarted)
 st.markdown("""\n""")
 st.markdown("""\n""")
@@ -94,6 +94,12 @@ interesp = st.text_input(
         key="interesp",
         placeholder="Ej: Me gusta leer libros de negocios, innovación y desarrollo personal. Disfruto de viajar, conocer nuevas culturas y aprender idiomas. Practico deportes como fútbol, tenis y natación.",
         label_visibility="visible")
+extrap = st.text_input(
+        "Datos Extra",
+        None,
+        key="interesp",
+        placeholder="Ej: RUT, Redes sociales, etc",
+        label_visibility="visible")
 
 # Form to accept user's text input for summarization
 result = []
@@ -105,7 +111,7 @@ with st.form('colecting_form', clear_on_submit=True):
             time.sleep(5)
             
 
-            response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp)
+            response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
 
             result.append(response)
 
