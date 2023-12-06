@@ -105,6 +105,7 @@ extrap = st.text_input(
 
 # Form to accept user's text input for summarization
 result = []
+response = "Debes Aceptar los terminos!"
 with st.form('colecting_form', clear_on_submit=True):
 
         submitted = st.form_submit_button('Submit')
@@ -114,8 +115,6 @@ with st.form('colecting_form', clear_on_submit=True):
                                 time.sleep(5)
                         response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                         result.append(response)
-                else:
-                        result.append("Debes Aceptar los terminos!")
 
 if len(result):
         st.info(response)
