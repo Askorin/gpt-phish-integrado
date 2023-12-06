@@ -111,13 +111,13 @@ with st.form('colecting_form', clear_on_submit=True):
         if submitted:
                 if agree:
                         with st.spinner('Calculating...'):
-                                time.sleep(5)
+                                time.sleep(1)
                                 response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                                 result.append(response)
                 else:
                         with st.spinner('Calculating...'):
-                                time.sleep(2)
-                                response="HOLA"
+                                time.sleep(1)
+                                response="Debes aceptar los términos y condiciones!"
                                 result.append(response)
                         
                        
