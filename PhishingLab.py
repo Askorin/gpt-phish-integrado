@@ -94,10 +94,11 @@ interesp = st.text_input(
         key="interesp",
         placeholder="Ej: Me gusta leer libros de negocios, innovación y desarrollo personal. Disfruto de viajar, conocer nuevas culturas y aprender idiomas. Practico deportes como fútbol, tenis y natación.",
         label_visibility="visible")
+
 extrap = st.text_input(
         "Datos Extra",
         None,
-        key="interesp",
+        key="extrap",
         placeholder="Ej: RUT, Redes sociales, etc",
         label_visibility="visible")
 
