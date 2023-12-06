@@ -42,6 +42,7 @@ st.write(home_privacy)
 
 st.markdown("#### Comenzar")
 st.write(home_getstarted)
+agree = st.checkbox('I agree')
 st.markdown("""\n""")
 st.markdown("""\n""")
 
@@ -105,16 +106,16 @@ extrap = st.text_input(
 # Form to accept user's text input for summarization
 result = []
 with st.form('colecting_form', clear_on_submit=True):
-    
-    submitted = st.form_submit_button('Submit')
-    if submitted:
-        with st.spinner('Calculating...'):
-            time.sleep(5)
-            
 
-            response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
-
-            result.append(response)
+        submitted = st.form_submit_button('Submit')
+        if submitted:
+                if agree:
+                        with st.spinner('Calculating...'):
+                                time.sleep(5)
+                        response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
+                        result.append(response)
+        else:
+               result.append("Debes Aceptar los terminos!")
 
 if len(result):
     st.info(response)
