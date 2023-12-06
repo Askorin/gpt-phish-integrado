@@ -114,8 +114,8 @@ with st.form('colecting_form', clear_on_submit=True):
                                 time.sleep(5)
                         response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                         result.append(response)
-        else:
-               result.append("Debes Aceptar los terminos!")
+                else:
+                        result.append("Debes Aceptar los terminos!")
 
 if len(result):
-    st.info(response)
+        st.info(response)
