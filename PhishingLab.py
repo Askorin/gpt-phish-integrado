@@ -47,7 +47,7 @@ st.markdown("""\n""")
 st.markdown("""\n""")
 
 # Text input
-uso_nombre = st.checkbox('Usar nombre')
+uso_nombre = st.checkbox('Usar nombre?')
 if uso_nombre:
         nombrep = st.text_input(
                 "Nombre y Apellidos",
@@ -55,55 +55,69 @@ if uso_nombre:
                 key="nombrep",
                 placeholder="Ej: Cristóbal González Muñoz",
                 label_visibility="visible")
+        
+uso_correo = st.checkbox('Usar correo?')
+if uso_correo:
+        correop = st.text_input(
+                "Correo electrónico",
+                None,
+                key="correop",
+                placeholder="Ej: miguel.soto@gmail.com",
+                label_visibility="visible")
 
-correop = st.text_input(
-        "Correo electrónico",
-        None,
-        key="correop",
-        placeholder="Ej: miguel.soto@gmail.com",
-        label_visibility="visible")
+uso_direccion = st.checkbox('Usar Dirección domiciliaria?')
+if uso_direccion:
+        direccionp = st.text_input(
+                "Dirección domiciliaria",
+                None,
+                key="direccionp",
+                placeholder="Ej: Av. Colón 1234, Depto. 56, Talcahuano, Región del Biobío",
+                label_visibility="visible")
 
-direccionp = st.text_input(
-        "Dirección domiciliaria",
-        None,
-        key="direccionp",
-        placeholder="Ej: Av. Colón 1234, Depto. 56, Talcahuano, Región del Biobío",
-        label_visibility="visible")
+uso_nacimiento = st.checkbox('Usar fecha de nacimiento?')
+if uso_nacimiento:
+        nacimientop = st.text_input(
+                "Fecha de nacimiento",
+                None,
+                key="nacimientop",
+                placeholder="Ej: 15 de agosto de 1995",
+                label_visibility="visible")
 
-nacimientop = st.text_input(
-        "Fecha de nacimiento",
-        None,
-        key="nacimientop",
-        placeholder="Ej: 15 de agosto de 1995",
-        label_visibility="visible")
+uso_telefono = st.checkbox('Usar numero de telefono?')
+if uso_telefono:
+        telefonop = st.text_input(
+                "Número de teléfono",
+                None,
+                key="telefonop",
+                placeholder="Ej: +56 9 8765 4321",
+                label_visibility="visible")
 
-telefonop = st.text_input(
-        "Número de teléfono",
-        None,
-        key="telefonop",
-        placeholder="Ej: +56 9 8765 4321",
-        label_visibility="visible")
+uso_laboral = st.checkbox('Usar información laboral/ocupación?')
+if uso_laboral:
+        laboralp = st.text_input(
+                "Experiencia laboral",
+                None,
+                key="laboralp",
+                placeholder="Ej: Ingeniero civil industrial. 3 años trabajando en una empresa de consultoría en proyectos de optimización de procesos, gestión de calidad y mejora continua. He participado en diversos proyectos para clientes de distintos rubros, como minería, energía, salud y educación.",
+                label_visibility="visible")
 
-laboralp = st.text_input(
-        "Experiencia laboral",
-        None,
-        key="laboralp",
-        placeholder="Ej: Ingeniero civil industrial. 3 años trabajando en una empresa de consultoría en proyectos de optimización de procesos, gestión de calidad y mejora continua. He participado en diversos proyectos para clientes de distintos rubros, como minería, energía, salud y educación.",
-        label_visibility="visible")
+uso_interes = st.checkbox('Usar intereses?')
+if uso_interes:
+        interesp = st.text_input(
+                "Intereses",
+                None,
+                key="interesp",
+                placeholder="Ej: Me gusta leer libros de negocios, innovación y desarrollo personal. Disfruto de viajar, conocer nuevas culturas y aprender idiomas. Practico deportes como fútbol, tenis y natación.",
+                label_visibility="visible")
 
-interesp = st.text_input(
-        "Intereses",
-        None,
-        key="interesp",
-        placeholder="Ej: Me gusta leer libros de negocios, innovación y desarrollo personal. Disfruto de viajar, conocer nuevas culturas y aprender idiomas. Practico deportes como fútbol, tenis y natación.",
-        label_visibility="visible")
-
-extrap = st.text_input(
-        "Datos Extra",
-        None,
-        key="extrap",
-        placeholder="Ej: RUT, Redes sociales, etc",
-        label_visibility="visible")
+uso_extra = st.checkbox('Usar información extra?')
+if uso_extra:
+        extrap = st.text_input(
+                "Datos Extra",
+                None,
+                key="extrap",
+                placeholder="Ej: RUT, Redes sociales, etc",
+                label_visibility="visible")
 
 # Form to accept user's text input for summarization
 result = []
