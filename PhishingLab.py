@@ -3,20 +3,22 @@ from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import streamlit as st
+from streamlit_gsheets import GSheetsConnection
+import pandas as pd
 import constants
 import react
 import time
 
-os.environ["OPENAI_API_KEY"] = constants.APIKEY
-
+os.environ["OPENAI_API_KEY"] = st.secrets["openaikey"]["apikey"]
 # Page title
 #st.set_page_config(page_title='EmailCreator')
 #st.title('ProjectP0.1')
+'''
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
     constants.APIKEY=openai_api_key
     os.environ["OPENAI_API_KEY"] = constants.APIKEY
-
+'''
 
 # copies 
 home_title = "PhishingLab"
@@ -47,6 +49,9 @@ if agree:
     st.write('Perfecto!')
 st.markdown("""\n""")
 st.markdown("""\n""")
+
+#GSheets connection
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Text input
 uso_nombre = st.checkbox('Usar nombre?')
@@ -156,3 +161,17 @@ with st.form('colecting_form', clear_on_submit=True):
                        
 if len(result):
         st.info(response)
+        with st.form(key="datos_form"):
+                ej1=st.slider("EJEMPLO1",0,50,5)
+                ej2=st.slider("EJEMPLO2",0,50,5)
+                ej3=st.slider("EJEMPLO3",0,50,5)
+                ej4=st.slider("EJEMPLO4",0,50,5)
+                ej5=st.slider("EJEMPLO5",0,50,5)
+                ej6=st.slider("EJEMPLO6",0,50,5)
+
+                st.markdown("**required*")
+
+                submit_button = st.form_submit_button(label="Submit ejemplos")
+
+                if submit_button:
+                        st.write("GRACIAS")
