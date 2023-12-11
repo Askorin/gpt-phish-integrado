@@ -13,12 +13,6 @@ os.environ["OPENAI_API_KEY"] = st.secrets["openaikey"]["apikey"]
 # Page title
 #st.set_page_config(page_title='EmailCreator')
 #st.title('ProjectP0.1')
-'''
-with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-    constants.APIKEY=openai_api_key
-    os.environ["OPENAI_API_KEY"] = constants.APIKEY
-'''
 
 # copies 
 home_title = "PhishingLab"
