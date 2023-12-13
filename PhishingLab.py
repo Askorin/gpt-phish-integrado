@@ -159,7 +159,7 @@ with st.form('colecting_form', clear_on_submit=False):
                         
                        
 if len(result):
-        st.info(response)
+        st.text(response)
         
 st.markdown("#### Encuesta")
 st.write(home_survey)
