@@ -156,16 +156,48 @@ with st.form('colecting_form', clear_on_submit=True):
 if len(result):
         st.info(response)
         with st.form(key="datos_form"):
-                ej1=st.slider("EJEMPLO1",0,50,5)
-                ej2=st.slider("EJEMPLO2",0,50,5)
-                ej3=st.slider("EJEMPLO3",0,50,5)
-                ej4=st.slider("EJEMPLO4",0,50,5)
-                ej5=st.slider("EJEMPLO5",0,50,5)
-                ej6=st.slider("EJEMPLO6",0,50,5)
+                ej1=st.select_slider("EJEMPLO1",
+                                     options=['1','2','3','4','5'],
+                                     value=('1','1'))
+                ej2=st.select_slider("EJEMPLO2",
+                                     options=['1','2','3','4','5'],
+                                     value=('1','1'))
+                ej3=st.select_slider("EJEMPLO3",
+                                     options=['1','2','3','4','5'],
+                                     value=('1','1'))
+                ej4=st.select_slider("EJEMPLO4",
+                                     options=['1','2','3','4','5'],
+                                     value=('1','1'))
+                ej5=st.select_slider("EJEMPLO5",
+                                     options=['1','2','3','4','5'],
+                                     value=('1','1'))
+                ej6=st.select_slider("EJEMPLO6",
+                                     options=['1','2','3','4','5'],
+                                     value=('1','1'))
 
                 st.markdown("**required*")
 
                 submit_button = st.form_submit_button(label="Submit ejemplos")
 
                 if submit_button:
-                        st.write("GRACIAS")
+                        #validar
+                        if not ej1 or not ej2:
+                                st.warning("Rellena los datos")
+                        else:
+                                #crear fila
+                                ejemplo_data = pd.DataFrame(
+                                        [
+                                                {
+                                                        "Ejemplo1": ej1,
+                                                        "Ejemplo2": ej2,
+                                                        "Ejemplo3": ej3,
+                                                        "Ejemplo4": ej4,
+                                                        "Ejemplo5": ej5,
+                                                        "Ejemplo6": ej6,
+                                                }
+                                        ]
+                                )
+
+                                #actualizar googlesheets
+                                conn.update(worksheet="datos", data=ejemplo_data)
+                                st.success("Gracias!!")
