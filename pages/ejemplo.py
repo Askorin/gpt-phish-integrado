@@ -5,6 +5,10 @@ from streamlit_gsheets import GSheetsConnection
 #GSheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
 
+existing_data = conn.read(worksheet="datos",usecols=list(range(6),ttl=5))
+existing_data = existing_data.dropna(how="all")
+st.dataframe(existing_data)
+
 with st.form(key="datos_form"):
         ej1=st.select_slider("EJEMPLO1",options=[1,2,3,4,5],value=(1,1))
         ej2=st.select_slider("EJEMPLO2",options=['1','2','3','4','5'],value=('1','1'))
@@ -33,7 +37,7 @@ with st.form(key="datos_form"):
                         }
                     ]
                 )
-
+                updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
                 #actualizar googlesheets
-                conn.update(worksheet="datos", data=ejemplo_data)
+                conn.update(worksheet="datos", data=updated_df)
                 st.success("Gracias!!")
