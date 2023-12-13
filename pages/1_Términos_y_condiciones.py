@@ -1,8 +1,7 @@
 import streamlit as st 
 
 st.set_page_config(
-    page_title="GPT Lab - Terms",
-    page_icon="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=gptLAb"#,
+    page_title="PhishingLab - Términos",
     #menu_items={"About": "GPT Lab is a user-friendly app that allows anyone to interact with and create their own AI Assistants powered by OpenAI's GPT language model. Our goal is to make AI accessible and easy to use for everyone, so you can focus on designing your Assistant without worrying about the underlying infrastructure.", "Get help": None, "Report a Bug": None}
 )
 
@@ -10,17 +9,11 @@ st.markdown(
     "<style>#MainMenu{visibility:hidden;}</style>",
     unsafe_allow_html=True
 )
+  
 
-with st.sidebar:
-    st.markdown('''
-    - [Terms of Use](#terms-of-use)
-    - [Privacy Policy](#privacy-policy)
-    ---
-    ''', unsafe_allow_html=True)   
-
-st.title("Terms")
-st.write("Last updated: 2023-06-06")
-st.header("Terms of Use")
+st.title("Términos")
+st.write("Actualizado: 2023-12-10")
+st.header("Términos de uso")
 
 st.info("""
 Welcome to GPT Lab, a platform hosted by GPT Lab LLC ("GPT Lab," "we," or "us"). By accessing our hosted services, you agree to comply with the following terms of service. These terms specifically apply to the hosted version of our services. The open source code used for these services is provided under the MIT License. Please read these terms and the license agreement carefully. If you do not agree to these terms or the license agreement, you should not use our hosted services or the open source code.
@@ -104,8 +97,5 @@ Your AI Assistant Prompts and your chat session messages on the hosted platform 
 ##### 3. Cookies  \n
 Our hosted service currently currently does not use cookies. However, we reserve the right to use cookies in the future to improve your experience and enhance the security of our platform. If we do, we will update this Privacy Policy to reflect the changes.
 
-##### 4. "Buy Me a Coffee" and Newsletters  \n
-If you choose to donate to our "Buy Me a Coffee" link (hosted by [Buy Me a Coffee](https://www.buymeacoffee.com)) (THANK YOU!) or subscribe to our newsletter (hosted by [BeeHiiv](https://www.beehiiv.com)), your email address will be collected and stored by the respective platforms for the purpose of contacting you in the future. Please refer to their respective privacy policies for more information. We do not collect and store these information from third-party services.
-
-By using the hosted version of GPT Lab, you consent to this Privacy Policy. If you have any questions or concerns about our privacy policy, please contact us at hello@gptlab.app.
+By using the hosted version of GPT Lab, you consent to this Privacy Policy. If you have any questions or concerns about our privacy policy, please contact us at rsanmarting2018@udec.cl.
 """)

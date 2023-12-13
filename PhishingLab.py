@@ -19,6 +19,7 @@ home_title = "PhishingLab"
 home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. Solo tienes que introducir los datos que creas que filtras con mayor facilidad y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes y peligrosos. Úsala con precaución y aprende a identificar y evitar los correos phishing."
 home_privacy = "En PhishingLab, tu privacidad es nuestra máxima prioridad. Tu información personal no es almacenada de ningún tipo, apenas generas un correo todo se elimina, asegurando una completa privacidad y anonimato. Esto significa que puedes usar GPT Lab con tranquilidad, sabiendo que tus datos siempre están seguros y protegidos."
 home_getstarted = "¿Listo para explorar las infinitas posibilidades de la IA? Revise y acepte nuestros Términos de uso y Política de privacidad, disponibles en nuestra página de Términos. Al marcar la casilla, confirma que ha leído y aceptado nuestras políticas. ¡Empecemos!"
+home_survey = "Responder la encuesta una vez generado el correo de prueba..."
 st.markdown(
     "<style>#MainMenu{visibility:hidden;}</style>",
     unsafe_allow_html=True
@@ -38,7 +39,7 @@ st.write(home_privacy)
 
 st.markdown("#### Comenzar")
 st.write(home_getstarted)
-agree = st.checkbox('He leído y acepto los términos y condiciones de uso')
+agree = st.checkbox('He leído y acepto las Politicas de Privacidad')
 if agree:
     st.write('Perfecto!')
 st.markdown("""\n""")
@@ -157,7 +158,8 @@ with st.form('colecting_form', clear_on_submit=True):
                        
 if len(result):
         st.info(response)
-        
+st.markdown("#### Encuesta")
+st.write(home_privacy)    
 with st.form(key="datos_form"):
         ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
         ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
@@ -169,8 +171,8 @@ with st.form(key="datos_form"):
                 
         if submit_button:
         #validar
-                if not ej1 or not ej2:
-                        st.warning("Rellena los datos")
+                if len(result):
+                        st.warning("Genera el correo!")
                 else:
                         #crear fila
                         ejemplo_data = pd.DataFrame(
