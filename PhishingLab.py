@@ -138,10 +138,11 @@ if uso_extra:
                 label_visibility="visible")
 else:
         extrap = ""
+        
 # Form to accept user's text input for summarization
 result = []
 generado = False
-with st.form('colecting_form', clear_on_submit=False):
+with st.form('colecting_form'):
 
         submitted = st.form_submit_button('Submit')
         if submitted:
@@ -151,37 +152,6 @@ with st.form('colecting_form', clear_on_submit=False):
                                 response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                                 result.append(response)
                                 generado = True
-                                st.info(response)
-                                with st.form(key="datos_form"):
-                                        ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
-                                        ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
-                                        ej3 = st.slider('Sensación de Deseo: ', 0, 5, 1)
-                                        ej4 = st.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
-                                        ej5 = st.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
-                                                
-                                        submit_button = st.form_submit_button(label="Submit ejemplos")
-                                                
-                                        if submit_button:
-                                        #validar
-                                                if not generado:
-                                                        st.warning("Genera el correo!")
-                                                else:
-                                                        #crear fila
-                                                        ejemplo_data = pd.DataFrame(
-                                                                [
-                                                                        {
-                                                                        "Autoridad": ej1,
-                                                                        "Urgencia": ej2,
-                                                                        "Deseo": ej3,
-                                                                        "CreerCorreo": ej4,
-                                                                        "PeligroFuturo": ej5,                  
-                                                                        }
-                                                                ]
-                                                        )
-                                                        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
-                                                        #actualizar googlesheets
-                                                        conn.update(worksheet="datos", data=updated_df)
-                                                        st.success("Gracias!!")
                 else:
                         with st.spinner('Calculating...'):
                                 time.sleep(1)
@@ -189,14 +159,15 @@ with st.form('colecting_form', clear_on_submit=False):
                                 result.append(response)
                         
                        
-if len(result):
+if generado:
         st.info(response)
         
 st.markdown("#### Encuesta")
 st.write(home_survey)
 listo = st.checkbox('prueba')
-if listo:    
-        with st.form(key="datos_form"):
+
+if generado:    
+        with st.form("datos_form"):
                 ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
                 ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
                 ej3 = st.slider('Sensación de Deseo: ', 0, 5, 1)
