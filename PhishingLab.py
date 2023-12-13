@@ -141,7 +141,7 @@ else:
 # Form to accept user's text input for summarization
 result = []
 generado = False
-with st.form('colecting_form', clear_on_submit=True):
+with st.form('colecting_form', clear_on_submit=False):
 
         submitted = st.form_submit_button('Submit')
         if submitted:
