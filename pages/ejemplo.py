@@ -10,30 +10,12 @@ existing_data = existing_data.dropna(how="all")
 st.dataframe(existing_data)
 
 with st.form(key="datos_form"):
-        ej1 = st.radio(
-            "What's your favorite movie genre",
-            [1, 2, 3, 4, 5],
-            captions = ["Nada.", "Muy poco.", "Normal.", "Bastante.", "Mucho."])
-        ej2 = st.radio(
-            "What's your favorite movie genre",
-            [1, 2, 3, 4, 5],
-            captions = ["Nada.", "Muy poco.", "Normal.", "Bastante.", "Mucho."])
-        ej3 = st.radio(
-            "What's your favorite movie genre",
-            [1, 2, 3, 4, 5],
-            captions = ["Nada.", "Muy poco.", "Normal.", "Bastante.", "Mucho."])
-        ej4 = st.radio(
-            "What's your favorite movie genre",
-            [1, 2, 3, 4, 5],
-            captions = ["Nada.", "Muy poco.", "Normal.", "Bastante.", "Mucho."])
-        ej5 = st.radio(
-            "What's your favorite movie genre",
-            [1, 2, 3, 4, 5],
-            captions = ["Nada.", "Muy poco.", "Normal.", "Bastante.", "Mucho."])
-        ej6 = st.radio(
-            "What's your favorite movie genre",
-            [1, 2, 3, 4, 5],
-            captions = ["Nada.", "Muy poco.", "Normal.", "Bastante.", "Mucho."])
+        ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
+        ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
+        ej3 = st.slider('Sensación de Deseo: ', 0, 5, 1)
+        ej4 = st.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
+        ej5 = st.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
+        ej6 = st.slider('How old are you?', 0, 130, 25)
         
         submit_button = st.form_submit_button(label="Submit ejemplos")
         
