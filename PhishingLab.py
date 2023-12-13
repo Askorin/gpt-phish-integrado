@@ -140,6 +140,7 @@ else:
         extrap = ""
 # Form to accept user's text input for summarization
 result = []
+generado = False
 with st.form('colecting_form', clear_on_submit=True):
 
         submitted = st.form_submit_button('Submit')
@@ -149,6 +150,7 @@ with st.form('colecting_form', clear_on_submit=True):
                                 time.sleep(1)
                                 response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                                 result.append(response)
+                                generado = True
                 else:
                         with st.spinner('Calculating...'):
                                 time.sleep(1)
@@ -158,8 +160,9 @@ with st.form('colecting_form', clear_on_submit=True):
                        
 if len(result):
         st.info(response)
+        
 st.markdown("#### Encuesta")
-st.write(home_privacy)    
+st.write(home_survey)    
 with st.form(key="datos_form"):
         ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
         ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
@@ -171,7 +174,7 @@ with st.form(key="datos_form"):
                 
         if submit_button:
         #validar
-                if len(result):
+                if not generado:
                         st.warning("Genera el correo!")
                 else:
                         #crear fila
