@@ -159,11 +159,12 @@ with st.form('colecting_form', clear_on_submit=False):
                         
                        
 if len(result):
-        st.text(response)
+        st.info(response)
         
 st.markdown("#### Encuesta")
 st.write(home_survey)
-if generado:    
+listo = st.checkbox('prueba')
+if listo:    
         with st.form(key="datos_form"):
                 ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
                 ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
