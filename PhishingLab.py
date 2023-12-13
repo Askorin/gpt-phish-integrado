@@ -140,7 +140,7 @@ else:
         extrap = ""
 # Form to accept user's text input for summarization
 result = []
-#generado = False
+generado = False
 with st.form('colecting_form', clear_on_submit=True):
 
         submitted = st.form_submit_button('Submit')
@@ -163,7 +163,6 @@ if len(result):
         
 st.markdown("#### Encuesta")
 st.write(home_survey)
-generado = st.checkbox('generar correo')
 if generado:    
         with st.form(key="datos_form"):
                 ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
