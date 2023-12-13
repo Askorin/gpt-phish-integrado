@@ -9,7 +9,7 @@ import constants
 import react
 import time
 
-os.environ["OPENAI_API_KEY"] = st.secrets["openaikey"]["apikey"]
+os.environ["OPENAI_API_KEY"] = st.secrets.openaikey.apikey
 # Page title
 #st.set_page_config(page_title='EmailCreator')
 #st.title('ProjectP0.1')
