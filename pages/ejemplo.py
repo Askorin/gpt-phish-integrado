@@ -7,7 +7,6 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 existing_data = conn.read(worksheet="datos", usecols=list(range(6)),ttl=5)
 existing_data = existing_data.dropna(how="all")
-st.dataframe(existing_data)
 
 with st.form(key="datos_form"):
         ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
