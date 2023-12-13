@@ -157,22 +157,23 @@ with st.form('colecting_form', clear_on_submit=True):
                        
 if len(result):
         st.info(response)
-        with st.form(key="datos_form"):
-                ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
-                ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
-                ej3 = st.slider('Sensación de Deseo: ', 0, 5, 1)
-                ej4 = st.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
-                ej5 = st.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
+        
+with st.form(key="datos_form"):
+        ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
+        ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
+        ej3 = st.slider('Sensación de Deseo: ', 0, 5, 1)
+        ej4 = st.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
+        ej5 = st.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
                 
-                submit_button = st.form_submit_button(label="Submit ejemplos")
+        submit_button = st.form_submit_button(label="Submit ejemplos")
                 
-                if submit_button:
-                #validar
-                        if not ej1 or not ej2:
-                                st.warning("Rellena los datos")
-                        else:
-                                #crear fila
-                                ejemplo_data = pd.DataFrame(
+        if submit_button:
+        #validar
+                if not ej1 or not ej2:
+                        st.warning("Rellena los datos")
+                else:
+                        #crear fila
+                        ejemplo_data = pd.DataFrame(
                                 [
                                         {
                                         "Autoridad": ej1,
@@ -182,8 +183,8 @@ if len(result):
                                         "PeligroFuturo": ej5,                  
                                         }
                                 ]
-                                )
-                                updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
-                                #actualizar googlesheets
-                                conn.update(worksheet="datos", data=updated_df)
-                                st.success("Gracias!!")
+                        )
+                        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
+                        #actualizar googlesheets
+                        conn.update(worksheet="datos", data=updated_df)
+                        st.success("Gracias!!")
