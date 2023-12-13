@@ -5,7 +5,7 @@ from streamlit_gsheets import GSheetsConnection
 #GSheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-existing_data = conn.read(worksheet="datos",usecols=list(range(6),ttl=5))
+existing_data = conn.read(worksheet="datos", usecols=list(range(6)),ttl=5)
 existing_data = existing_data.dropna(how="all")
 st.dataframe(existing_data)
 
