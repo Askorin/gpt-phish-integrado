@@ -170,26 +170,25 @@ ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?',
 
 
 
-
-if len(result): 
-        submit_button = encuestaf.form_submit_button(label="Enviar")                       
-        if submit_button:
-                #crear fila
-                ejemplo_data = pd.DataFrame(
-                        [
-                                {
-                                "Autoridad": ej1,
-                                "Urgencia": ej2,
-                                "Deseo": ej3,
-                                "CreerCorreo": ej4,
-                                "PeligroFuturo": ej5,                  
-                                }
-                        ]
-                        )
-                updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
-                #actualizar googlesheets
-                conn.update(worksheet="datos", data=updated_df)
-                encuestaf.success("Gracias!!", icon="✅")
+submit_button = encuestaf.form_submit_button(label="Enviar") 
+                        
+if submit_button:
+        #crear fila
+        ejemplo_data = pd.DataFrame(
+                [
+                        {
+                        "Autoridad": ej1,
+                        "Urgencia": ej2,
+                        "Deseo": ej3,
+                        "CreerCorreo": ej4,
+                        "PeligroFuturo": ej5,                  
+                        }
+                ]
+                )
+        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
+        #actualizar googlesheets
+        conn.update(worksheet="datos", data=updated_df)
+        encuestaf.success("Gracias!!", icon="✅")
 else:
         encuestaf.error("Debes generar el correo!", icon="🚨")
         
