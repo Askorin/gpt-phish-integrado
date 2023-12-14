@@ -189,6 +189,6 @@ if submit_button:
         #actualizar googlesheets
         conn.update(worksheet="datos", data=updated_df)
         encuestaf.success("Gracias!!", icon="✅")
-else:
+if len(result):
         encuestaf.error("Debes generar el correo!", icon="🚨")
         
