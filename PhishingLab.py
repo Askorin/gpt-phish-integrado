@@ -140,7 +140,6 @@ else:
         
 # Form to accept user's text input for summarization
 result = []
-generado = False
 respondido = False
 with st.form('colecting_form'):
 
@@ -151,7 +150,6 @@ with st.form('colecting_form'):
                                 time.sleep(1)
                                 response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                                 result.append(response)
-                                generado = True
                 else:
                         with st.spinner('Calculating...'):
                                 time.sleep(1)
@@ -160,7 +158,7 @@ with st.form('colecting_form'):
                         
 
                   
-if generado:
+if len(result):
         st.info(response)
         ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
         ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
