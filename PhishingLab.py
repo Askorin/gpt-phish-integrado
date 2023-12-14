@@ -141,6 +141,7 @@ else:
 # Form to accept user's text input for summarization
 result = []
 generado = False
+respondido = False
 with st.form('colecting_form'):
 
         submitted = st.form_submit_button('Generar correo')
@@ -161,10 +162,35 @@ with st.form('colecting_form'):
                   
 if generado:
         st.info(response)
+        ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
+        ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
+        ej3 = st.slider('Sensación de Deseo: ', 0, 5, 1)
+        ej4 = st.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
+        ej5 = st.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
+        with st.form("datos_form"):
+                
+                        
+                submit_button = st.form_submit_button(label="Enviar")
+                        
+                if submit_button:
+                        #crear fila
+                        ejemplo_data = pd.DataFrame(
+                                [
+                                        {
+                                        "Autoridad": ej1,
+                                        "Urgencia": ej2,
+                                        "Deseo": ej3,
+                                        "CreerCorreo": ej4,
+                                        "PeligroFuturo": ej5,                  
+                                        }
+                                ]
+                                )
+                        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
+                        #actualizar googlesheets
+                        conn.update(worksheet="datos", data=updated_df)
+                        respondido = True
+                        #st.success("Gracias!!")
 
-
-generado2 = st.checkbox('listo') 
-def estado_escuesta():
-        if generado2:
-                return True
-        return False
+if respondido:
+        st.success("Gracias!!")
+        
