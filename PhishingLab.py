@@ -185,6 +185,7 @@ if submit_button and len(result):
         updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
         #actualizar googlesheets
         conn.update(worksheet="datos", data=updated_df)
-        encuestaf.success("Gracias!!")
-
+        encuestaf.success("Gracias!!", icon="✅")
+else:
+        encuestaf.error("Debes generar el correo!", icon="🚨")
         
