@@ -150,6 +150,12 @@ if submitted:
                         response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                         result.append(response)
                         encuestaf.info(response)
+                        ej1 = encuestaf.slider('Sensación de Autoridad:', 0, 5, 1)
+                        ej2 = encuestaf.slider('Sensación de Urgencia:', 0, 5, 1)
+                        ej3 = encuestaf.slider('Sensación de Deseo: ', 0, 5, 1)
+                        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
+                        ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
+                        submit_button = encuestaf.form_submit_button(label="Enviar")
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
@@ -162,12 +168,7 @@ if submitted:
 
         
 
-ej1 = encuestaf.slider('Sensación de Autoridad:', 0, 5, 1)
-ej2 = encuestaf.slider('Sensación de Urgencia:', 0, 5, 1)
-ej3 = encuestaf.slider('Sensación de Deseo: ', 0, 5, 1)
-ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
-ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
-submit_button = encuestaf.form_submit_button(label="Enviar")
+
                         
 if submit_button and len(result):
         #crear fila
