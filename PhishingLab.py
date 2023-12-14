@@ -141,6 +141,7 @@ else:
 # Form to accept user's text input for summarization
 result = []
 correof = st.form('colecting_form')
+encuestaf = st.form("datos_form")
 submitted = correof.form_submit_button('Generar correo')
 if submitted:
         if agree:
@@ -148,7 +149,7 @@ if submitted:
                         time.sleep(1)
                         response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
                         result.append(response)
-                        correof.info(response)
+                        encuestaf.info(response)
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
@@ -160,7 +161,7 @@ if submitted:
                   
 
         
-encuestaf = st.form("datos_form")
+
 ej1 = encuestaf.slider('Sensación de Autoridad:', 0, 5, 1)
 ej2 = encuestaf.slider('Sensación de Urgencia:', 0, 5, 1)
 ej3 = encuestaf.slider('Sensación de Deseo: ', 0, 5, 1)
