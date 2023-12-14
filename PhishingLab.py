@@ -169,7 +169,7 @@ ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del corr
 ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
 submit_button = encuestaf.form_submit_button(label="Enviar")
                         
-if submit_button:
+if submit_button and len(result):
         #crear fila
         ejemplo_data = pd.DataFrame(
                 [
