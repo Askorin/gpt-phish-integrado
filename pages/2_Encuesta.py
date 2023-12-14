@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
-
+import PhishingLab as pl
 #GSheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
 survey = "Responder la encuesta una vez generado el correo de prueba..."
@@ -10,8 +10,8 @@ existing_data = conn.read(worksheet="datos", usecols=list(range(6)),ttl=5)
 existing_data = existing_data.dropna(how="all")
 st.markdown("#### Encuesta")
 st.write(survey)
-listo = st.checkbox('listo')
-
+#listo = st.checkbox('listo')
+listo = pl.estado_escuesta()
 if listo:    
         with st.form("datos_form"):
                 ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)

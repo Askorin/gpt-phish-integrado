@@ -157,7 +157,14 @@ with st.form('colecting_form'):
                                 response="Debes aceptar los términos y condiciones!"
                                 result.append(response)
                         
-                       
+
+                  
 if generado:
         st.info(response)
-        
+
+
+generado2 = st.checkbox('listo') 
+def estado_escuesta():
+        if generado2:
+                return True
+        return False
