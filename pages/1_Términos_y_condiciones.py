@@ -16,86 +16,44 @@ st.write("Actualizado: 2023-12-10")
 st.header("Términos de uso")
 
 st.info("""
-Welcome to GPT Lab, a platform hosted by GPT Lab LLC ("GPT Lab," "we," or "us"). By accessing our hosted services, you agree to comply with the following terms of service. These terms specifically apply to the hosted version of our services. The open source code used for these services is provided under the MIT License. Please read these terms and the license agreement carefully. If you do not agree to these terms or the license agreement, you should not use our hosted services or the open source code.
+Bienvenido a PhishingLab, una plataforma orientada a analizar el impacto de ChatGPT en la generación de phishing. Al acceder a nuestros servicios, usted acepta cumplir con los siguientes términos de servicio. Lea atentamente estas condiciones y el acuerdo de licencia. Si no acepta estas condiciones o el acuerdo de licencia, no debe utilizar nuestros servicios.
 """)
 
 st.markdown("""
-##### 1. Use of Our Hosted Services  \n 
-GPT Lab LLC provides a user-friendly platform for creating and interacting with AI Assistants powered by OpenAI's GPT language model. These terms apply specifically to the use of our hosted version of this platform. By using our hosted services, you agree to use them only for lawful purposes and in a manner that does not infringe the rights of or restrict or inhibit the use and enjoyment of our services by any third party. We reserve the right to terminate your access to our hosted services at any time if we reasonably believe that you have breached any of these terms of service.
+##### 1. Uso de nuestros servicios  \n 
+PhishingLab proporciona una plataforma fácil de usar para evaluar contenido creado con Asistentes de IA impulsados por el modelo de lenguaje GPT de OpenAI. Estos términos se aplican específicamente al uso de nuestra versión alojada de esta plataforma. Al utilizar nuestros servicios, usted se compromete a utilizarlos únicamente con fines lícitos y de un modo que no infrinja los derechos de terceros ni restrinja o inhiba el uso y disfrute de nuestros servicios por parte de terceros.
 
-##### 2. Eligibility \n
-To use the hosted services provided by GPT Lab, you must be at least 18 years of age or the legal age of majority in your jurisdiction (if different). You must also have an OpenAI API Key to access the AI models used by GPT Lab.
+##### 2. Política de uso de OpenAI\n
+OpenAI quiere que todo el mundo utilice sus herramientas de forma segura y responsable. Por eso OpenAI ha creado políticas de uso que se aplican a todos los usuarios de sus modelos, herramientas y servicios. Siguiendo estas políticas, los usuarios se asegurarán de que la tecnología de OpenAI se utiliza para el bien. Si OpenAI descubre que el producto o uso de un usuario no sigue estas políticas, puede pedir al usuario que realice los cambios necesarios. Las infracciones repetidas o graves pueden dar lugar a medidas adicionales, incluida la suspensión o cancelación de la cuenta del usuario.
 
-##### 3. OpenAI's Usage Policy  \n
-OpenAI wants everyone to use their tools safely and responsibly. That’s why OpenAI has created usage policies that apply to all users of their models, tools, and services. By following these policies, users will ensure that OpenAI's technology is used for good. If OpenAI discovers that a user's product or usage doesn't follow these policies, they may ask the user to make necessary changes. Repeated or serious violations may result in further action, including suspending or terminating the user's account.
+Las políticas de OpenAI pueden cambiar a medida que aprendan más sobre el uso y abuso de sus modelos. Para obtener más información sobre la política de uso de OpenAI, visite https://platform.openai.com/docs/usage-policies.
 
-OpenAI's policies may change as they learn more about use and abuse of their models. To learn more about OpenAI's usage policy, please visit https://platform.openai.com/docs/usage-policies.
+##### 3. Política de privacidad  \n
+En PhishingLab, nos tomamos su privacidad muy en serio. Nuestra aplicación sólo utiliza su información durante las sesiones para interactuar con los modelos de IA. Para garantizar su confidencialidad y seguridad, los datos no son almacenados de ninguna forma ni tampoco el correo generado, solo será almacenada la información proporcionada en la encuesta final y los tipos de datos que se usan. 
 
-##### 4. Feedback for the Hosted Platform  \n
-We value your feedback on the hosted version of GPT Lab and appreciate any comments, suggestions, or ideas you may have for improving our platform ("Feedback"). By providing Feedback, you grant us a non-exclusive, transferable, worldwide, perpetual, irrevocable, fully-paid, royalty-free license, with the right to sublicense, to use, copy, modify, create derivative works based upon, and otherwise use the Feedback for any purpose. You acknowledge that your Feedback does not contain any confidential or proprietary information belonging to you or any third party. While we welcome your Feedback on the hosted service, you agree that we are not obliged to act on any Feedback you provide. You also agree to indemnify and hold GPT Lab LLC and its affiliates, officers, agents, employees, and licensors harmless from any claim or demand, including reasonable attorneys’ fees, made by any third party due to or arising out of your Feedback, as set forth in the Indemnification section below.
+##### 4. Conducta del Usuario  \n
+Usted se compromete a utilizar PhishingLab sólo para fines lícitos y de conformidad con estas Condiciones del servicio. En concreto, se compromete a no: (a) infringir ninguna ley o normativa aplicable; (b) utilizar la herramienta con fines ilícitos; (c) compartir correos generados; (d) utilizar información de terceros. También se compromete a utilizar PhishingLab de forma responsable y ética y a contribuir a un entorno general positivo para todos los usuarios. Esto incluye abstenerse de cualquier comportamiento que promueva, incite o participe en comportamientos ilícitos de cualquier tipo. Esto también incluye crear y utilizar el contenido de forma responsable y ética.
 
-##### 5. Privacy Policy  \n
-At GPT Lab, we take your privacy very seriously. Our application only uses your OpenAI API Key during sessions to interact with the AI models. To ensure your confidentiality and security, we use a one-way hashing algorithm on your OpenAI Key to generate your unique user identity rather than collecting or storing Personal-Identifiable-Information (PII). We also use a symmetric AES-128 encryption algorithm, with a unique key for each user, to encrypt your chat transcripts with the AI Assistants. Lastly, we do store the AI assistant prompts, which can be reviewed and audited periodically to ensure no misuse. For more information about our privacy practices, please visit our privacy policy.
+##### 5. Contenido del Usuario  \n
+Usted se compromete a no crear ni compartir correos generados que: (a) infrinjan cualquier ley o normativa aplicable; (b) infrinjan los derechos de propiedad intelectual, privacidad u otros derechos de cualquier personal; (c) suplantar la identidad de cualquier persona o entidad con la intención de engañar o confundir a otros; (d) distribuir o publicar spam, cartas en cadena o esquemas piramidales; (e) promover, incitar o participar en acoso de cualquier tipo.
 
-##### 6. User Conduct  \n
-You agree to use GPT Lab only for lawful purposes and in accordance with these Terms of Service. Specifically, you agree not to: (a) violate any applicable law or regulation; (b) maliciously try to hack or break AI Assistants by using Prompt Injection techniques; (c) share bots that do not meet our user content standard; (d) break the system in any way. You also agree to use GPT Lab in a responsible and ethical manner and to contribute to an overall positive environment for all users. This includes refraining from any behavior that promotes, incites, or engages in hate speech, discriminatory behavior, or harassment of any kind based on race, gender, sexual orientation, religion, nationality, or any other personal characteristics. This also includes creating and using AI responsibly and ethically.
-
-##### 7. User Content  \n
-You retain ownership of all GPT prompts created by you on GPT Lab. You agree not to create or share AI Assistants that: (a) violate any applicable law or regulation; (b) infringe on the intellectual property, privacy, or other rights of any person, except for prompts that are inspired by existing works or ideas and do not substantially copy the intellectual property of others or violate any intellectual property laws or regulations; (c) impersonate any person or entity in a manner that is intended to deceive or mislead others, unless the impersonation is clearly designated as parody or satire, or has written permission; (d) distribute or post spam, chain letters, or pyramid schemes; (e) promote, incite, or engage in hate speech, discriminatory behavior, or harassment of any kind based on race, gender, sexual orientation, religion, nationality, or any other personal characteristics. Additionally, we recommend that you do not create AI Assistants for use in heavily regulated fields, as the legal and ethical implications of such applications can be complex and far-reaching.
-
-As stated in our Privacy Policy, your user identifier cannot be tied to you but your chat session messages are stored. While the chat session messages are encrypted, you agree you will not provide any PII or Personal Health Information (PHI) during chat sessions. You also grant us a non-exclusive, transferable, worldwide, perpetual, irrevocable, fully-paid, royalty-free license to use, copy, modify, create derivative works based upon, and otherwise use the content for improving our platform and any other potential purposes. Finally, you agree to indemnify and hold GPT Lab LLC and its affiliates, officers, agents, employees, and licensors harmless from any claim or demand, including reasonable attorneys’ fees, made by any third party due to or arising out of any content you provide, as set forth in the Indemnification section below.
-
-##### 8. Use of AI Assistants in Sessions  \n
-GPT Lab provides a platform for creating and interacting with AI Assistants powered by OpenAI's GPT language model. **While we strive to provide a safe and user-friendly experience, we cannot guarantee the accuracy or reliability of the AI Assistants created on our platform. Any advice or guidance provided by the AI Assistants should be treated as entertainment purposes only and should be taken with a grain of salt. We will not be liable for any decisions made by users based on that advice.**
-
-As discussed in the User Content section, you agree not to provide any PII or PHI to the AI Assistants during these sessions. Please be aware that your session messages are transmitted to OpenAI's models and are recorded on our server (your user identifier cannot be tied to you and your session messages are stored encrypted). While we take appropriate measures to secure your information, we cannot guarantee the absolute security of your data. Therefore, we recommend that you do not provide any sensitive or confidential information during the chat sessions. By using the AI Assistants on our platform, you acknowledge and accept these risks. You also agree to indemnify and hold GPT Lab LLC and its affiliates, officers, agents, employees, and licensors harmless from any claim or demand, including reasonable attorneys’ fees, made by any third party due to or arising out of any chat sessions you participate in or any decisions you make based on the AI Assistants, as set forth in the Indemnification section below. 
-
-##### 9. Termination and Suspension  \n
-We reserve the right to terminate or suspend your access to GPT Lab, without notice or liability, for any reason whatsoever, including, but not limited to, a breach of these Terms of Service, and we also reserve the right to stop providing the service without advance notice. All provisions of these Terms which by their nature should survive termination shall survive, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
-
-You agree that GPT Lab LLC shall not be liable to you or any third party for any termination of your access to GPT Lab or for the discontinuation of the service. Upon termination or discontinuation, your right to use GPT Lab will immediately cease, and you must cease all use of GPT Lab and delete any stored data or information associated with it.
-
-##### 10. Limitation of Liability  \n
-GPT Lab LLC is not responsible for any direct, indirect, incidental, special, or consequential damages arising from your use of GPT Lab, including, but not limited to, any errors or omissions in any content, or any loss or damage of any kind incurred as a result of the use of any content posted, emailed, transmitted, or otherwise made available via GPT Lab.
-
-##### 11. Indemnification  \n
-You agree to indemnify and hold GPT Lab LLC and its affiliates, officers, agents, employees, and licensors harmless from any claim or demand, including reasonable attorneys’ fees, made by any third party due to or arising out of your use of GPT Lab, your violation of these Terms of Service, or your violation of any rights of another.
-
-##### 12. Modifications  \n
-GPT Lab LLC reserves the right to modify or amend these Terms of Service at any time, without notice. Your continued use of GPT Lab following any such modifications constitutes your acceptance of the modified Terms of Service.
-
-##### 13. Governing Law  \n
-These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of the jurisdiction in which GPT Lab LLC operates.
-
-##### 14. Entire Agreement  \n
-These Terms of Service and any policies or operating rules posted by us on the GPT Lab website or application constitute the entire agreement and understanding between you and us. These Terms of Service govern your use of the GPT Lab website or application and supersede any prior or contemporaneous agreements, communications, and proposals, whether oral or written, between you and us (including, but not limited to, any prior versions of the Terms of Service).
-
-##### 15. Waiver and Severability  \n
-Our failure to exercise or enforce any right or provision of these Terms of Service shall not constitute a waiver of such right or provision. If any provision of these Terms of Service is held to be invalid or unenforceable, such provision shall be struck and the remaining provisions shall be enforced.
-
-##### 16. Changes to Terms of Service  \n
-We reserve the right, at our sole discretion, to update, change, or replace any part of these Terms of Service by posting updates and changes to our website. It is your responsibility to check our website periodically for changes. Your continued use of or access to our website or the Service following the posting of any changes to these Terms of Service constitutes acceptance of those changes.
-
-Contact Information
-Questions about the Terms of Service should be sent to us at hello@gptlab.app.
+##### 6. Uso de correos creados en la página  \n
+PhishingLab proporciona una plataforma para crear y evaluar la peligrosidad de correos tipo Phishing impulsados por el modelo de lenguaje GPT de OpenAI. Cualquier correo proporcionado por la página debe tratarse únicamente con fines de estudio y debe tomarse con cautela. No seremos responsables de las decisiones que tomen los usuarios.
 
 """)
 
 st.markdown("  \n  \n  \n  \n")
 
-st.header("Privacy Policy")
+st.header("Política de privacidad")
 
 st.markdown("""
-At GPT Lab, we value your privacy and are committed to protecting it when you use our hosted platform. Here's how we handle your data:
+En PhishingLab, valoramos su privacidad y nos comprometemos a protegerla cuando utilice nuestra plataforma. A continuación le explicamos cómo tratamos sus datos:
 
-##### 1. OpenAI API Key  \n
-When you sign in to GPT Lab hosted service, we require you to enter your OpenAI API Key. Our application uses your Key during sessions to interact with the AI models and to tie your AI Assistants and sessions to your unique user identity. We do not store your OpenAI API Key in plaintext. To ensure your confidentiality and security, we use a one-way hashing algorithm on your Open AI API Key to generate your unique user identity rather than collecting or storing Personal-Identifiable-Information (PII).
+##### 1. Datos personales \n
+Cuando entre en la página de PhishingLab, le pediremos que introduzca sus datos personales para rellenar los formularios de generación de correos. Nuestra aplicación utiliza sus datos durante las sesiones para interactuar con los modelos de IA y generar correos que traten de usar estos datos para simular posibles correos de spam/phishing, así las personas podrán evaluar la credibilidad de estos correos y que tan peligrosos podrían llegar a ser. No almacenamos sus datos de ninguna forma, una vez se procesan los datos no se ocupan para nada más y se eliminan, solo se almacenarán los resultados de las encuestas y los tipos de datos que son más usados.
 
-##### 2. AI Assistant Prompts and User Chat Session Messages  \n
-Your AI Assistant Prompts and your chat session messages on the hosted platform are transmitted and processed by OpenAI. We store both on our Google Firestore database (located in central United States), but they are only tied to your anonymized user identifier, generated from the hashed value of your OpenAI API Key. Your information is encrypted at rest and in transit by our cloud provider (Google) and limited to authorized personnel. Additionally, we symmetrically encrypt your session messages with a unique key assigned to you before storing them on our server, ensuring they remain private on our server. The prompts are stored unencrypted and may be reviewed and audited periodically to ensure compliance with our Terms.
+##### 2. Políticas de privacidad por parte de OpenAI   \n
+https://openai.com/policies/privacy-policy
 
-##### 3. Cookies  \n
-Our hosted service currently currently does not use cookies. However, we reserve the right to use cookies in the future to improve your experience and enhance the security of our platform. If we do, we will update this Privacy Policy to reflect the changes.
-
-By using the hosted version of GPT Lab, you consent to this Privacy Policy. If you have any questions or concerns about our privacy policy, please contact us at rsanmarting2018@udec.cl.
+Al utilizar PhishingLab, usted acepta esta Política de Privacidad.
 """)

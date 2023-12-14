@@ -19,7 +19,6 @@ home_title = "PhishingLab"
 home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. Solo tienes que introducir los datos que creas que filtras con mayor facilidad y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes y peligrosos. Úsala con precaución y aprende a identificar y evitar los correos phishing."
 home_privacy = "En PhishingLab, tu privacidad es nuestra máxima prioridad. Tu información personal no es almacenada de ningún tipo, apenas generas un correo todo se elimina, asegurando una completa privacidad y anonimato. Esto significa que puedes usar GPT Lab con tranquilidad, sabiendo que tus datos siempre están seguros y protegidos."
 home_getstarted = "¿Listo para explorar las infinitas posibilidades de la IA? Revise y acepte nuestros Términos de uso y Política de privacidad, disponibles en nuestra página de Términos. Al marcar la casilla, confirma que ha leído y aceptado nuestras políticas. ¡Empecemos!"
-home_survey = "Responder la encuesta una vez generado el correo de prueba..."
 st.markdown(
     "<style>#MainMenu{visibility:hidden;}</style>",
     unsafe_allow_html=True
@@ -162,34 +161,3 @@ with st.form('colecting_form'):
 if generado:
         st.info(response)
         
-st.markdown("#### Encuesta")
-st.write(home_survey)
-listo = st.checkbox('listo')
-
-if listo:    
-        with st.form("datos_form"):
-                ej1 = st.slider('Sensación de Autoridad:', 0, 5, 1)
-                ej2 = st.slider('Sensación de Urgencia:', 0, 5, 1)
-                ej3 = st.slider('Sensación de Deseo: ', 0, 5, 1)
-                ej4 = st.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
-                ej5 = st.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
-                        
-                submit_button = st.form_submit_button(label="Enviar")
-                        
-                if submit_button:
-                        #crear fila
-                        ejemplo_data = pd.DataFrame(
-                                [
-                                        {
-                                        "Autoridad": ej1,
-                                        "Urgencia": ej2,
-                                        "Deseo": ej3,
-                                        "CreerCorreo": ej4,
-                                        "PeligroFuturo": ej5,                  
-                                        }
-                                ]
-                                )
-                        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
-                        #actualizar googlesheets
-                        conn.update(worksheet="datos", data=updated_df)
-                        st.success("Gracias!!")
