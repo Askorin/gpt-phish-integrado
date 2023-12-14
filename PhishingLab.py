@@ -156,6 +156,26 @@ if submitted:
                         ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
                         ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
                         submit_button = encuestaf.form_submit_button(label="Enviar")
+                        if submit_button and len(result):
+                                #crear fila
+                                ejemplo_data = pd.DataFrame(
+                                        [
+                                                {
+                                                "Autoridad": ej1,
+                                                "Urgencia": ej2,
+                                                "Deseo": ej3,
+                                                "CreerCorreo": ej4,
+                                                "PeligroFuturo": ej5,                  
+                                                }
+                                        ]
+                                        )
+                                updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
+                                #actualizar googlesheets
+                                conn.update(worksheet="datos", data=updated_df)
+                                encuestaf.success("Gracias!!", icon="✅")
+                        else:
+                                encuestaf.error("Debes generar el correo!", icon="🚨")
+                        
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
@@ -170,23 +190,5 @@ if submitted:
 
 
                         
-if submit_button and len(result):
-        #crear fila
-        ejemplo_data = pd.DataFrame(
-                [
-                        {
-                        "Autoridad": ej1,
-                        "Urgencia": ej2,
-                        "Deseo": ej3,
-                        "CreerCorreo": ej4,
-                        "PeligroFuturo": ej5,                  
-                        }
-                ]
-                )
-        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
-        #actualizar googlesheets
-        conn.update(worksheet="datos", data=updated_df)
-        encuestaf.success("Gracias!!", icon="✅")
-else:
-        encuestaf.error("Debes generar el correo!", icon="🚨")
+
         
