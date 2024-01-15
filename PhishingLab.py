@@ -192,7 +192,10 @@ ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del corr
 ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
 
 
-
+encuesta_lista = st.checkbox('Correo generado correctamente')
+if encuesta_lista:
+        st.write('ola')
+        
 submit_button = encuestaf.form_submit_button(label="Enviar") 
                         
 if submit_button:
