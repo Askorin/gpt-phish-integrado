@@ -16,7 +16,7 @@ st.write("Actualizado: 10-01-2024")
 st.header("Términos de uso")
 
 st.info("""
-Bienvenido a PhishingLab, una plataforma orientada a analizar el impacto de ChatGPT en la generación de phishing. Al acceder a estos servicios, usted acepta cumplir con los siguientes términos de servicio. Lea atentamente estas condiciones y el acuerdo de licencia. Si no acepta estas condiciones o el acuerdo de licencia, no debe utilizar nuestros servicios.
+PhishingLab es una plataforma orientada a analizar el impacto de ChatGPT en la generación de phishing. Al acceder a estos servicios, usted acepta cumplir con los siguientes términos de servicio. Lea atentamente estas condiciones y el acuerdo de licencia. Si no acepta estas condiciones o el acuerdo de licencia, no debe utilizar nuestros servicios.
 """)
 
 st.markdown("""
