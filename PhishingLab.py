@@ -51,7 +51,7 @@ st.markdown("""\n""")
 
 #GSheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(worksheet="datos", usecols=list(range(5)),ttl=5)
+existing_data = conn.read(worksheet="datos", usecols=list(range(13)),ttl=13)
 existing_data = existing_data.dropna(how="all")
 
 st.markdown("#### Instrucciones de uso")
@@ -162,7 +162,6 @@ else:
 # Form to accept user's text input for summarization
 result = []
 correof = st.form('colecting_form')
-encuestaf = st.form("datos_form")
 submitted = correof.form_submit_button('Generar correo')
 if submitted:
         if agree:
@@ -170,7 +169,7 @@ if submitted:
                         time.sleep(1)
                         response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         result.append(response)
-                        encuestaf.info(response)
+                        correof.info(response)
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
@@ -183,36 +182,54 @@ if submitted:
 
         
 
-ej1 = encuestaf.slider('Sensación de Autoridad:', 0, 5, 1)
-ej2 = encuestaf.slider('Sensación de Urgencia:', 0, 5, 1)
-ej3 = encuestaf.slider('Sensación de Deseo: ', 0, 5, 1)
-ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
-ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
+
 
 
 encuesta_lista = st.checkbox('Correo generado correctamente')
 if encuesta_lista:
         st.write('ola')
+        encuestaf = st.form("datos_form")
+        ej1 = encuestaf.slider('Sensación de Autoridad:', 0, 5, 1)
+        ej2 = encuestaf.slider('Sensación de Urgencia:', 0, 5, 1)
+        ej3 = encuestaf.slider('Sensación de Deseo: ', 0, 5, 1)
+        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
+        ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
+        ej6 = encuestaf.checkbox('Uso nombre?')
+        ej7 = encuestaf.checkbox('Uso correo?')
+        ej8 = encuestaf.checkbox('Uso direccion?')
+        ej9 = encuestaf.checkbox('Uso Fecha de Nacimiento?')
+        ej10 = encuestaf.checkbox('Uso numero de telefono?')
+        ej11 = encuestaf.checkbox('Uso info laboral?')
+        ej12 = encuestaf.checkbox('Uso intereses?')
+        ej13 = encuestaf.checkbox('Uso info familiar?')
         
-submit_button = encuestaf.form_submit_button(label="Enviar") 
+        submit_button = encuestaf.form_submit_button(label="Enviar") 
                         
-if submit_button:
-        #crear fila
-        ejemplo_data = pd.DataFrame(
-                [
-                        {
-                        "Autoridad": ej1,
-                        "Urgencia": ej2,
-                        "Deseo": ej3,
-                        "CreerCorreo": ej4,
-                        "PeligroFuturo": ej5,                  
-                        }
-                ]
-                )
-        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
-        #actualizar googlesheets
-        conn.update(worksheet="datos", data=updated_df)
-        encuestaf.success("Gracias!!", icon="✅")
-if not len(result):
-        encuestaf.error("Debes generar el correo!", icon="🚨")
+        if submit_button:
+                #crear fila
+                ejemplo_data = pd.DataFrame(
+                        [
+                                {
+                                "Autoridad": ej1,
+                                "Urgencia": ej2,
+                                "Deseo": ej3,
+                                "CreerCorreo": ej4,
+                                "PeligroFuturo": ej5,
+                                "Nombre": ej6,
+                                "Correo": ej7,
+                                "Direccion": ej8,
+                                "FechaNacimiento": ej9,
+                                "NumeroTelefono": ej10,
+                                "Laboral": ej11,
+                                "Intereses": ej12,
+                                "Familiar": ej13,       
+                                }
+                        ]
+                        )
+                updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
+                #actualizar googlesheets
+                conn.update(worksheet="datos", data=updated_df)
+                encuestaf.success("Gracias!!", icon="✅")
+        
+
         
