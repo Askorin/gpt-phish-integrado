@@ -16,9 +16,16 @@ os.environ["OPENAI_API_KEY"] = st.secrets["openaikey"]
 
 # copies 
 home_title = "PhishingLab"
-home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. Solo tienes que introducir los datos que creas que filtras con mayor facilidad y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes y peligrosos. Úsala con precaución y aprende a identificar y evitar los correos phishing."
-home_privacy = "En PhishingLab, tu privacidad es nuestra máxima prioridad. Tu información personal no es almacenada de ningún tipo, apenas generas un correo todo se elimina, asegurando una completa privacidad y anonimato. Esto significa que puedes usar GPT Lab con tranquilidad, sabiendo que tus datos siempre están seguros y protegidos."
-home_getstarted = "¿Listo para explorar las infinitas posibilidades de la IA? Revise y acepte nuestros Términos de uso y Política de privacidad, disponibles en nuestra página de Términos. Al marcar la casilla, confirma que ha leído y aceptado nuestras políticas. ¡Empecemos!"
+home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. Solo tienes que introducir los datos que creas que filtras con mayor facilidad y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes y peligrosos. Úsala y aprende a identificar y evitar los correos phishing."
+home_privacy = "Tu información personal no es almacenada de ningún tipo, apenas generas un correo todo se elimina, asegurando una completa privacidad y anonimato. Esto significa que puedes usar PhishingLab con tranquilidad, sabiendo que tus datos siempre están seguros y protegidos."
+home_getstarted = "Revise y acepte nuestros Términos de uso y Política de privacidad, disponibles en nuestra página de Términos. Al marcar la casilla, confirma que ha leído y aceptado nuestras políticas. ¡Empecemos!"
+instrucciones1 = "1-Primero debes marcar qué datos son los más probables que filtres con facilidad en internet."
+instrucciones2 = "2-Una vez marcada las casillas deberás rellenar con los datos de la forma que se muestra en los ejemplos."
+instrucciones3 = "3-Ya con todos los datos listos presiona el botón de generar correo y espera a que se muestre en pantalla."
+instrucciones4 = "4-Una vez generado el correo verifica que se genero correctamente, hay ocasiones en las que puede que no se genere el correo de manera correcta, en caso de que no se genere como es deseado vuelve a presionar el botón de generar correo o intenta usar más datos, hay veces que los datos entregados son muy pocos y no se puede generar un correo consistente. "
+instrucciones5 = "5-Ya con el correo generado de manera correcta marca la casilla de “Correo generado correctamente”, de esta forma se desplegará una ventana con una encuesta para evaluar el contenido del correo y la sensación generada."
+instrucciones6 = "6- Rellena la encuesta marcando las casillas según lo indicado y presiona el botón de enviar."
+instrucciones7 = "7- Una vez ya enviada la encuesta se almacenarán los datos para su estudio, muchas gracias por participar."
 st.markdown(
     "<style>#MainMenu{visibility:hidden;}</style>",
     unsafe_allow_html=True
@@ -48,6 +55,22 @@ st.markdown("""\n""")
 conn = st.connection("gsheets", type=GSheetsConnection)
 existing_data = conn.read(worksheet="datos", usecols=list(range(5)),ttl=5)
 existing_data = existing_data.dropna(how="all")
+
+st.markdown("#### Instrucciones de uso")
+st.write(instrucciones1)
+st.markdown("""\n""")
+st.write(instrucciones2)
+st.markdown("""\n""")
+st.write(instrucciones3)
+st.markdown("""\n""")
+st.write(instrucciones4)
+st.markdown("""\n""")
+st.write(instrucciones5)
+st.markdown("""\n""")
+st.write(instrucciones6)
+st.markdown("""\n""")
+st.write(instrucciones7)
+st.markdown("""\n""")
 
 # Text input
 uso_nombre = st.checkbox('Usar nombre?')
