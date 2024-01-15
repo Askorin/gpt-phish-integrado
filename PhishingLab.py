@@ -1,4 +1,5 @@
 import os
+import openai
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
@@ -9,11 +10,8 @@ import constants
 import react
 import time
 
-os.environ["OPENAI_API_KEY"] = st.secrets["openaikey"]
-# Page title
-#st.set_page_config(page_title='EmailCreator')
-#st.title('ProjectP0.1')
-
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+#openai.api_key = os.environ["OPENAI_API_KEY"]
 # copies 
 home_title = "PhishingLab"
 home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. Solo tienes que introducir los datos que creas que filtras con mayor facilidad y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes y peligrosos. Úsala y aprende a identificar y evitar los correos phishing."
