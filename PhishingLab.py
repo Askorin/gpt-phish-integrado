@@ -127,16 +127,16 @@ if uso_interes:
 else:
         interesp = ""
 
-uso_extra = st.checkbox('Usar información extra?')
-if uso_extra:
-        extrap = st.text_input(
-                "Datos Extra",
+uso_familia = st.checkbox('Usar información familiar?')
+if uso_familia:
+        familiap = st.text_input(
+                "Datos Familiares",
                 None,
-                key="extrap",
-                placeholder="Ej: RUT, Redes sociales, etc",
+                key="familp",
+                placeholder="Ej: Vivo con mi esposa y 2 hijos...",
                 label_visibility="visible")
 else:
-        extrap = ""
+        familiap = ""
         
 # Form to accept user's text input for summarization
 result = []
@@ -147,7 +147,7 @@ if submitted:
         if agree:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
-                        response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,extrap)
+                        response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         result.append(response)
                         encuestaf.info(response)
         else:
