@@ -70,8 +70,11 @@ st.markdown("""\n""")
 st.write(instrucciones7)
 st.markdown("""\n""")
 
+if 'correo_generado' not in st.session_state:
+        st.session_state['correo_generado'] = 'Correo sin generar'
+
 # Text input
-uso_nombre = st.checkbox('Usar nombre?')
+uso_nombre = st.checkbox('¿Utilizar el nombre?')
 if uso_nombre:
         nombrep = st.text_input(
                 "Nombre y Apellidos",
@@ -82,7 +85,7 @@ if uso_nombre:
 else:
         nombrep = ""
         
-uso_correo = st.checkbox('Usar correo?')
+uso_correo = st.checkbox('¿Utilizar el correo electrónico?')
 if uso_correo:
         correop = st.text_input(
                 "Correo electrónico",
@@ -93,7 +96,7 @@ if uso_correo:
 else:
         correop = ""
 
-uso_direccion = st.checkbox('Usar Dirección domiciliaria?')
+uso_direccion = st.checkbox('¿Utilizar la dirección domiciliaria?')
 if uso_direccion:
         direccionp = st.text_input(
                 "Dirección domiciliaria",
@@ -104,7 +107,7 @@ if uso_direccion:
 else:
         direccionp = ""
 
-uso_nacimiento = st.checkbox('Usar fecha de nacimiento?')
+uso_nacimiento = st.checkbox('¿Utilizar la fecha de nacimiento?')
 if uso_nacimiento:
         nacimientop = st.text_input(
                 "Fecha de nacimiento",
@@ -115,7 +118,7 @@ if uso_nacimiento:
 else:
         nacimientop = ""
 
-uso_telefono = st.checkbox('Usar numero de telefono?')
+uso_telefono = st.checkbox('¿Utilizar el número de teléfono?')
 if uso_telefono:
         telefonop = st.text_input(
                 "Número de teléfono",
@@ -126,7 +129,7 @@ if uso_telefono:
 else:
         telefonop = ""
 
-uso_laboral = st.checkbox('Usar información laboral/ocupación?')
+uso_laboral = st.checkbox('¿Utilizar la información laboral/ocupacional?')
 if uso_laboral:
         laboralp = st.text_input(
                 "Experiencia laboral",
@@ -137,7 +140,7 @@ if uso_laboral:
 else:
         laboralp = ""
 
-uso_interes = st.checkbox('Usar intereses?')
+uso_interes = st.checkbox('¿Utilizar intereses?')
 if uso_interes:
         interesp = st.text_input(
                 "Intereses",
@@ -148,7 +151,7 @@ if uso_interes:
 else:
         interesp = ""
 
-uso_familia = st.checkbox('Usar información familiar?')
+uso_familia = st.checkbox('¿Utilizar información familiar?')
 if uso_familia:
         familiap = st.text_input(
                 "Datos Familiares",
@@ -160,7 +163,6 @@ else:
         familiap = ""
         
 # Form to accept user's text input for summarization
-result = []
 correof = st.form('colecting_form')
 submitted = correof.form_submit_button('Generar correo')
 if submitted:
@@ -168,13 +170,12 @@ if submitted:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
                         response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        result.append(response)
+                        st.session_state['correo_generado'] = response
                         correof.info(response)
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
                         response="Debes aceptar los términos y condiciones!"
-                        result.append(response)
                         correof.info(response)
                         
 
@@ -187,21 +188,25 @@ if submitted:
 
 encuesta_lista = st.checkbox('Correo generado correctamente')
 if encuesta_lista:
-        st.write('ola')
+        
+        #Explicar autoridad, urgencia y deseo, explicar la escal;a del 1 al 5.
+        st.write('Esta es una encuesta para estudiar el correo generado, a continuación se mostrarán una serie de preguntas junto a unas barras con el valor del 0 al 4, utiliza las barras para responder las preguntas según se indique (0-nada, 1-poco, 2-neutral, 3-bastante, 4-mucho):')
         encuestaf = st.form("datos_form")
-        ej1 = encuestaf.slider('Sensación de Autoridad:', 0, 5, 1)
-        ej2 = encuestaf.slider('Sensación de Urgencia:', 0, 5, 1)
-        ej3 = encuestaf.slider('Sensación de Deseo: ', 0, 5, 1)
-        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 5, 1)
-        ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 5, 1)
-        ej6 = encuestaf.checkbox('Uso nombre?')
-        ej7 = encuestaf.checkbox('Uso correo?')
-        ej8 = encuestaf.checkbox('Uso direccion?')
-        ej9 = encuestaf.checkbox('Uso Fecha de Nacimiento?')
-        ej10 = encuestaf.checkbox('Uso numero de telefono?')
-        ej11 = encuestaf.checkbox('Uso info laboral?')
-        ej12 = encuestaf.checkbox('Uso intereses?')
-        ej13 = encuestaf.checkbox('Uso info familiar?')
+        correo_correcto = st.session_state['correo_generado']
+        encuestaf.info(correo_correcto)
+        ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+        ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+        ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 4, 1)
+        ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 4, 1)
+        ej6 = uso_nombre
+        ej7 = uso_correo
+        ej8 = uso_direccion
+        ej9 = uso_nacimiento
+        ej10 = uso_telefono
+        ej11 = uso_laboral
+        ej12 = uso_interes
+        ej13 = uso_familia
         
         submit_button = encuestaf.form_submit_button(label="Enviar") 
                         
