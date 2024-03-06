@@ -177,19 +177,26 @@ correof = st.form('colecting_form')
 submitted = correof.form_submit_button('Generar correo')
 if submitted:
         if agree:
-                with st.spinner('Calculating...'):
+                with st.spinner('Generando correos, por favor espere...'):
                         time.sleep(1)
                         response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        response_rf = "Metodo1:"+response1[0]+"Metodo2:"+response2[0]
                         st.session_state['correo_generado1'] = response1[0]
                         st.session_state['correo_generado2'] = response2[0]
                         st.session_state['trait1'] = response1[1]
                         st.session_state['trait2'] = response2[1]
+
+                        response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        st.session_state['correo_generado1'] = response1[0]
+                        st.session_state['correo_generado2'] = response2[0]
+                        st.session_state['trait1'] = response1[1]
+                        st.session_state['trait2'] = response2[1]
+
                         correof.info(response1[0])
                         correof.info(response2[0])
         else:
-                with st.spinner('Calculating...'):
+                with st.spinner('Generando correos, por favor espere...'):
                         time.sleep(1)
                         response="Debes aceptar los términos y condiciones!"
                         correof.info(response)
