@@ -178,7 +178,7 @@ if submitted:
                                                 Metodo 2:
                                                 {metodo2p}
                                                                   """)
-                        response_rf = response_f.format(metodo1p=response1,metodo2p=response2)
+                        response_rf = "Metodo1:\n"+response1+"\n"+"Metodo2:\n"+response2+"\n"
                         st.session_state['correo_generado'] = response_rf
                         correof.info(response_rf)
         else:
