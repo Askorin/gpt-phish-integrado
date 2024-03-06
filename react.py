@@ -9,7 +9,7 @@ import constants
 from langchain import PromptTemplate
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
 
-def phishing_generator(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
+def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     #Filtrar datos segun importancia
     nombrep=nomb
     correop=corr
