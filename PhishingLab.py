@@ -8,6 +8,7 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import constants
 import react
+import biografia
 import time
 
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
@@ -169,9 +170,10 @@ if submitted:
         if agree:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
-                        response = react.phishing_generator(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        st.session_state['correo_generado'] = response
-                        correof.info(response)
+                        response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        st.session_state['correo_generado'] = response1+response2
+                        correof.info(response1+response2)
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
