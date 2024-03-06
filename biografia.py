@@ -26,14 +26,14 @@ def phishing_biografia(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     )
     
     #2-Autoridad 2-Urgencia 2-Deseo 2-Urgencia y Autoridad 2-Urgencia y Deseo 2-Autoridad y Deseo
-    llm = OpenAI(model_name="gpt-3.5-turbo-1106",temperature=0.6)
+    llm = OpenAI(model_name="gpt-3.5-turbo-1106",temperature=0.4)
     question = prompt_template.format(nombre=nombrep, correo=correop, direccion=direccionp, nacimiento=nacimientop, telefono=telefonop, laboral=laborp, interes=interesp, familia=familp)
 
     response1 = llm(question)
     
     traits = ["Autoridad", "Miedo", "Deseo"]
     selected_trait = random.choice(traits)
-    question2 = PromptTemplate.from_template("Simula un posible correo Phishing que genere {traitp} usando la siguiente biografia: {response1p}. El correo debe ser consistente con lo descrito en la biografia, debe ser realista y creible.")
+    question2 = PromptTemplate.from_template("Simula un posible correo Phishing que genere {traitp} usando la siguiente biografia: {response1p}.")
     response2 = question2.format(traitp=selected_trait,response1p=response1)
     response3 = llm(response2)
 
