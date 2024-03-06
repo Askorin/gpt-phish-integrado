@@ -74,6 +74,12 @@ st.markdown("""\n""")
 if 'correo_generado' not in st.session_state:
         st.session_state['correo_generado'] = 'Correo sin generar'
 
+if 'trait1' not in st.session_state:
+        st.session_state['trait1'] = 'Trait1 sin generar'
+
+if 'trait2' not in st.session_state:
+        st.session_state['trait2'] = 'Trait2 sin generar'
+
 # Text input
 uso_nombre = st.checkbox('¿Utilizar el nombre?')
 if uso_nombre:
@@ -180,6 +186,8 @@ if submitted:
                                                                   """)
                         response_rf = "Metodo1:"+response1[0]+"Metodo2:"+response2[0]
                         st.session_state['correo_generado'] = response_rf
+                        st.session_state['trait1'] = response1[1]
+                        st.session_state['trait2'] = response2[1]
                         correof.info(response_rf)
         else:
                 with st.spinner('Calculating...'):
@@ -216,11 +224,11 @@ if encuesta_lista:
         ej11 = uso_laboral
         ej12 = uso_interes
         ej13 = uso_familia
-        ej14 = response1[1]
+        ej14 = st.session_state['trait1']
         ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 2? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
         ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 2? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
         ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 2? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej18 = response2[1]
+        ej18 = st.session_state['trait2']
         
         submit_button = encuestaf.form_submit_button(label="Enviar") 
                         
