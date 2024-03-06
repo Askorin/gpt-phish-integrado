@@ -178,7 +178,7 @@ if submitted:
                                                 Metodo 2:
                                                 {metodo2p}
                                                                   """)
-                        response_rf = "Metodo1:"+response1[0]+"Metodo2:"+response2+response1[1]
+                        response_rf = "Metodo1:"+response1[0]+"Metodo2:"+response2+"HOLA"+response1[1]
                         st.session_state['correo_generado'] = response_rf
                         correof.info(response_rf)
         else:
