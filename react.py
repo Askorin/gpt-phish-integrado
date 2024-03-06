@@ -5,6 +5,7 @@ from langchain.agents import initialize_agent, Tool
 from langchain.agents import AgentType
 from langchain.agents.react.base import DocstoreExplorer
 import constants
+import random
 #Definir PromptTemplate
 from langchain import PromptTemplate
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
@@ -157,8 +158,11 @@ def phishing_generator(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     PREGUNTA:{question} """
 
     response1 = llm(question)
-    question2 = PromptTemplate.from_template("Simula un correo Phishing para esta persona: {response1p}.")
-    response2 = question2.format(response1p=response1)
+    
+    traits = ["Autoridad", "Miedo", "Deseo"]
+    selected_trait = random.choice(traits)
+    question2 = PromptTemplate.from_template("Simula un correo Phishing que genere {traitp} para esta persona: {response1p}.")
+    response2 = question2.format(traitp=selected_trait,response1p=response1)
     response3 = llm(response2)
     print(response3)
     print("CORREO ACA:")
