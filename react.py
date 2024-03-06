@@ -160,7 +160,7 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     template2 = PromptTemplate.from_template("{response2p}. Entrega solo el correo de RESPUESTA mejorando redaccion y estructura, añadiendo un asunto coherente a lo descrito en el correo. ")
     generador = template2.format(response2p=response2)
     respuesta_final = llm(generador)
-    trait = PromptTemplate.from_template("Sabiendo los siguientes rasgos Autoridad: Los datos de la victima pueden ser usados para falsificar una nfigura de autoridad. Urgencia: Los datos de la victima pueden ser usados para generar una sensación de urgencia que la presione a tomar acción. Deseo: Los datos de la víctima pueden ser usados para generar una sensación de deseo por algo. Bajo que rasgo clasificarias el siguiente correo: {correoclasificado}? ")
+    trait = PromptTemplate.from_template("Sabiendo los siguientes rasgos Autoridad: Los datos de la victima pueden ser usados para falsificar una nfigura de autoridad. Urgencia: Los datos de la victima pueden ser usados para generar una sensación de urgencia que la presione a tomar acción. Deseo: Los datos de la víctima pueden ser usados para generar una sensación de deseo por algo. Bajo que rasgo clasificarias el siguiente correo: {correoclasificado}? Solo responde con el rasgo que creas, nada más.")
     definirtrait = trait.format(correoclasificado=respuesta_final)
     traitFinal = llm(definirtrait)
     return ([respuesta_final,traitFinal])
