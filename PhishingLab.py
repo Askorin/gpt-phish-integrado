@@ -172,7 +172,7 @@ if submitted:
                         time.sleep(1)
                         response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        st.session_state['correo_generado'] = response1+response2
+                        st.session_state['correo_generado'] = "METODO 1:"+response1+"METODO 2:"+response2
                         correof.info(response1+response2)
         else:
                 with st.spinner('Calculating...'):
