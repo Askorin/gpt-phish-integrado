@@ -33,7 +33,7 @@ def phishing_biografia(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     
     traits = ["Autoridad", "Miedo", "Deseo"]
     selected_trait = random.choice(traits)
-    question2 = PromptTemplate.from_template("Simula un correo Phishing que genere {traitp} para esta persona: {response1p}.")
+    question2 = PromptTemplate.from_template("Simula un posible correo Phishing que genere {traitp} en esta persona: {response1p}. El correo debe ser consistente con lo descrito en la biografia y debe ser realista.")
     response2 = question2.format(traitp=selected_trait,response1p=response1)
     response3 = llm(response2)
     print(response3)
