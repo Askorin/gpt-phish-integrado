@@ -20,7 +20,7 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     interesp=inter
     familp=famil
     prompt_template = PromptTemplate.from_template( """
-        Genera un correo de phishing para los siguientes datos:Nombre: {nombre},Correo electrónico: {correo},Dirección domiciliaria: {direccion},Fecha de nacimiento: {nacimiento},Número de teléfono: {telefono},Experiencia laboral: {laboral},Intereses: {interes}, Familia: {familia}                                                                                 
+        Genera un correo de phishing para los siguientes datos:{nombre},{correo},{direccion},{nacimiento},{telefono},{laboral},{interes},{familia}                                                                                 
     """
     )
     
