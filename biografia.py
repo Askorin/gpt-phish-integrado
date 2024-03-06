@@ -36,7 +36,10 @@ def phishing_biografia(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     question2 = PromptTemplate.from_template("Simula un posible correo Phishing que genere {traitp} usando la siguiente biografia: {response1p}. El correo debe ser consistente con lo descrito en la biografia y debe ser realista.")
     response2 = question2.format(traitp=selected_trait,response1p=response1)
     response3 = llm(response2)
-    print(response3)
-    print("CORREO ACA:")
-    return response3
+
+    template2 = PromptTemplate.from_template("{response2p}. Entrega solo el correo de RESPUESTA mejorando redaccion y estructura, añadiendo un asunto coherente a lo descrito en el correo. ")
+    generador = template2.format(response2p=response3)
+    respuesta_final = llm(generador)
+    return respuesta_final
+
   
