@@ -52,7 +52,7 @@ st.markdown("""\n""")
 
 #GSheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(worksheet="datos", usecols=list(range(13)),ttl=13)
+existing_data = conn.read(worksheet="datos", usecols=list(range(18)),ttl=18)
 existing_data = existing_data.dropna(how="all")
 
 st.markdown("#### Instrucciones de uso")
@@ -178,7 +178,7 @@ if submitted:
                                                 Metodo 2:
                                                 {metodo2p}
                                                                   """)
-                        response_rf = "Metodo1:"+response1[0]+"Metodo2:"+response2+"HOLA"+response1[1]
+                        response_rf = "Metodo1:"+response1[0]+"Metodo2:"+response2[0]
                         st.session_state['correo_generado'] = response_rf
                         correof.info(response_rf)
         else:
@@ -203,10 +203,10 @@ if encuesta_lista:
         encuestaf = st.form("datos_form")
         correo_correcto = st.session_state['correo_generado']
         encuestaf.info(correo_correcto)
-        ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-        ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-        ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo?', 0, 4, 1)
+        ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 1? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+        ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 1? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+        ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 1? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido de los correos?', 0, 4, 1)
         ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 4, 1)
         ej6 = uso_nombre
         ej7 = uso_correo
@@ -216,6 +216,11 @@ if encuesta_lista:
         ej11 = uso_laboral
         ej12 = uso_interes
         ej13 = uso_familia
+        ej14 = response1[1]
+        ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 2? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+        ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 2? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+        ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 2? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+        ej18 = response2[1]
         
         submit_button = encuestaf.form_submit_button(label="Enviar") 
                         
@@ -224,9 +229,9 @@ if encuesta_lista:
                 ejemplo_data = pd.DataFrame(
                         [
                                 {
-                                "Autoridad": ej1,
-                                "Urgencia": ej2,
-                                "Deseo": ej3,
+                                "Autoridad1": ej1,
+                                "Urgencia1": ej2,
+                                "Deseo1": ej3,
                                 "CreerCorreo": ej4,
                                 "PeligroFuturo": ej5,
                                 "Nombre": ej6,
@@ -236,7 +241,12 @@ if encuesta_lista:
                                 "NumeroTelefono": ej10,
                                 "Laboral": ej11,
                                 "Intereses": ej12,
-                                "Familiar": ej13,       
+                                "Familiar": ej13,
+                                "RasgoDefinido1": ej14,
+                                "Autoridad2": ej15,
+                                "Urgencia2": ej16,
+                                "Deseo2": ej17,
+                                "RasgoDefinido2": ej18,       
                                 }
                         ]
                         )
