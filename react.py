@@ -159,10 +159,10 @@ def phishing_generator(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     response1 = llm(question)
     question2 = PromptTemplate.from_template("Simula un correo Phishing para esta persona: {response1p}.")
     response2 = question2.format(response1p=response1)
-    response2 = llm(response2)
-    print(response2)
+    response3 = llm(response2)
+    print(response3)
     print("CORREO ACA:")
-    return response2
+    return response3
     '''
     #AUTORIDAD 1
     PREGUNTA:"Genera un correo de phishing para los siguientes datos:\nNombre: Miguel Ángel Soto.\nOcupación: Ingeniero civil industrial trabajando en una empresa de consultoría llamada BestConsultores.\nEdad: 28 años.\nDomicilio: Av. Colón 1234, Depto. 56, Talcahuano, Región del Biobío.\nFamilia: Vive con su pareja y un gato\nIntereses: Le gusta leer libros de negocios, innovación y desarrollo personal. Disfruta de viajar, conocer nuevas culturas y aprender idiomas.\nExperiencia laboral: 3 años trabajando en una empresa de consultoría en proyectos de optimización de procesos, gestión de calidad y mejora continua. Ha participado en diversos proyectos para clientes de distintos rubros, como minería, energía, salud y educación.\n"
