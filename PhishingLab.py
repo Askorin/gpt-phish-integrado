@@ -71,8 +71,11 @@ st.markdown("""\n""")
 st.write(instrucciones7)
 st.markdown("""\n""")
 
-if 'correo_generado' not in st.session_state:
-        st.session_state['correo_generado'] = 'Correo sin generar'
+if 'correo_generado1' not in st.session_state:
+        st.session_state['correo_generado1'] = 'Correo 1 sin generar'
+
+if 'correo_generado2' not in st.session_state:
+        st.session_state['correo_generado2'] = 'Correo 2 sin generar'
 
 if 'trait1' not in st.session_state:
         st.session_state['trait1'] = 'Trait1 sin generar'
@@ -178,17 +181,13 @@ if submitted:
                         time.sleep(1)
                         response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        response_f = PromptTemplate.from_template( """
-                                                Metodo 1: 
-                                                {metodo1p}
-                                                Metodo 2:
-                                                {metodo2p}
-                                                                  """)
                         response_rf = "Metodo1:"+response1[0]+"Metodo2:"+response2[0]
-                        st.session_state['correo_generado'] = response_rf
+                        st.session_state['correo_generado1'] = response1[0]
+                        st.session_state['correo_generado2'] = response2[0]
                         st.session_state['trait1'] = response1[1]
                         st.session_state['trait2'] = response2[1]
-                        correof.info(response_rf)
+                        correof.info(response1[0])
+                        correof.info(response2[0])
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
@@ -209,8 +208,10 @@ if encuesta_lista:
         #Explicar autoridad, urgencia y deseo, explicar la escal;a del 1 al 5.
         st.write('Esta es una encuesta para estudiar el correo generado, a continuación se mostrarán una serie de preguntas junto a unas barras con el valor del 0 al 4, utiliza las barras para responder las preguntas según se indique (0-nada, 1-poco, 2-neutral, 3-bastante, 4-mucho):')
         encuestaf = st.form("datos_form")
-        correo_correcto = st.session_state['correo_generado']
-        encuestaf.info(correo_correcto)
+        correo_correcto1 = st.session_state['correo_generado1']
+        correo_correcto2 = st.session_state['correo_generado2']
+        encuestaf.info(correo_correcto1)
+        encuestaf.info(correo_correcto2)
         ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 1? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
         ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 1? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
         ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 1? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
