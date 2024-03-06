@@ -20,7 +20,7 @@ def phishing_generator(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     interesp=inter
     familp=famil
     prompt_template = PromptTemplate.from_template( """
-        Genera un correo de phishing para los siguientes datos:Nombre: {nombre},Correo electrónico: {correo},Dirección domiciliaria: {direccion},Fecha de nacimiento: {nacimiento},Número de teléfono: {telefono},Experiencia laboral: {laboral},Intereses: {interes}, Familia: {familia}                                                                                 
+        Simula una biografia para los siguientes datos:Nombre: {nombre},Correo electrónico: {correo},Dirección domiciliaria: {direccion},Fecha de nacimiento: {nacimiento},Número de teléfono: {telefono},Experiencia laboral: {laboral},Intereses: {interes}, Familia: {familia}                                                                                 
     """
     )
     
@@ -156,12 +156,13 @@ def phishing_generator(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
 
     PREGUNTA:{question} """
 
-    response2 = llm(manual_react)
-    template2 = PromptTemplate.from_template("{response2p}. Entrega solo el correo de RESPUESTA mejorando redaccion y estructura, añadiendo un asunto coherente a lo descrito en el correo. ")
-    generador = template2.format(response2p=response2)
-    respuesta_final = llm(generador)
+    response1 = llm(question)
+    question2 = PromptTemplate.from_template("Simula un correo Phishing para esta persona: {response1p}.")
+    response2 = question2.format(response1p=response1)
+    response3 = llm(response2)
+    print(response3)
     print("CORREO ACA:")
-    return respuesta_final
+    return response3
     '''
     #AUTORIDAD 1
     PREGUNTA:"Genera un correo de phishing para los siguientes datos:\nNombre: Miguel Ángel Soto.\nOcupación: Ingeniero civil industrial trabajando en una empresa de consultoría llamada BestConsultores.\nEdad: 28 años.\nDomicilio: Av. Colón 1234, Depto. 56, Talcahuano, Región del Biobío.\nFamilia: Vive con su pareja y un gato\nIntereses: Le gusta leer libros de negocios, innovación y desarrollo personal. Disfruta de viajar, conocer nuevas culturas y aprender idiomas.\nExperiencia laboral: 3 años trabajando en una empresa de consultoría en proyectos de optimización de procesos, gestión de calidad y mejora continua. Ha participado en diversos proyectos para clientes de distintos rubros, como minería, energía, salud y educación.\n"
