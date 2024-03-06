@@ -180,7 +180,7 @@ if submitted:
                                                                   """)
                         response_rf = response_f.format(metodo1p=response1,metodo2p=response2)
                         st.session_state['correo_generado'] = response_rf
-                        correof.info(response1+response2)
+                        correof.info(response_rf)
         else:
                 with st.spinner('Calculating...'):
                         time.sleep(1)
