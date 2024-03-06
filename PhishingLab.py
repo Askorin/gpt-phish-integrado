@@ -174,9 +174,9 @@ if submitted:
                         response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         response_f = PromptTemplate.from_template( """
                                                 Metodo 1: \n 
-                                                {metodo1p}\n
+                                                {metodo1p}
                                                 Metodo 2: \n
-                                                {metodo2p}\n
+                                                {metodo2p}
                                                                   """)
                         response_rf = response_f.format(metodo1p=response1,metodo2p=response2)
                         st.session_state['correo_generado'] = response_rf
