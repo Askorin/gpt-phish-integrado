@@ -270,6 +270,8 @@ if encuesta_lista:
                 #actualizar googlesheets
                 conn.update(worksheet="datos", data=updated_df)
                 encuestaf.success("Gracias!!", icon="✅")
+                time.sleep(3)
+                st.rerun()
         
 
         
