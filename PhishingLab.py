@@ -5,6 +5,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
+from streamlit_js_eval import streamlit_js_eval
 import pandas as pd
 import constants
 import react
@@ -271,7 +272,7 @@ if encuesta_lista:
                 conn.update(worksheet="datos", data=updated_df)
                 encuestaf.success("Gracias!!", icon="✅")
                 time.sleep(3)
-                st.rerun()
+                streamlit_js_eval(js_expressions="parent.window.location.reload()")
         
 
         
