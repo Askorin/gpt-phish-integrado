@@ -53,7 +53,7 @@ st.markdown("""\n""")
 
 #GSheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(worksheet="datos", usecols=list(range(18)),ttl=18)
+existing_data = conn.read(worksheet="datos", usecols=list(range(19)),ttl=19)
 existing_data = existing_data.dropna(how="all")
 
 st.markdown("#### Instrucciones de uso")
@@ -193,8 +193,9 @@ if submitted:
                         st.session_state['correo_generado2'] = response2[0]
                         st.session_state['trait1'] = response1[1]
                         st.session_state['trait2'] = response2[1]
-
+                        correof.info("METODO 1:")
                         correof.info(response1[0])
+                        correof.info("METODO 2:")
                         correof.info(response2[0])
         else:
                 with st.spinner('Generando correos, por favor espere...'):
@@ -223,8 +224,7 @@ if encuesta_lista:
         ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 1? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
         ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 1? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
         ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 1? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido de los correos?', 0, 4, 1)
-        ej5 = encuestaf.slider('¿Piensas que esto podría ser peligroso en un futuro?', 0, 4, 1)
+        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo del Metodo 1?', 0, 4, 1)
         ej6 = uso_nombre
         ej7 = uso_correo
         ej8 = uso_direccion
@@ -237,7 +237,9 @@ if encuesta_lista:
         ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 2? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
         ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 2? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
         ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 2? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej18 = st.session_state['trait2']
+        ej18 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo del Metodo 2?', 0, 4, 1)
+        ej5 = encuestaf.slider('¿Piensas que esto podría ser mas peligroso que el phishing tradicional?', 0, 4, 1)
+        ej19 = st.session_state['trait2']
         
         submit_button = encuestaf.form_submit_button(label="Enviar") 
                         
@@ -249,7 +251,7 @@ if encuesta_lista:
                                 "Autoridad1": ej1,
                                 "Urgencia1": ej2,
                                 "Deseo1": ej3,
-                                "CreerCorreo": ej4,
+                                "CreerCorreo1": ej4,
                                 "PeligroFuturo": ej5,
                                 "Nombre": ej6,
                                 "Correo": ej7,
@@ -263,7 +265,8 @@ if encuesta_lista:
                                 "Autoridad2": ej15,
                                 "Urgencia2": ej16,
                                 "Deseo2": ej17,
-                                "RasgoDefinido2": ej18,       
+                                "RasgoDefinido2": ej19,
+                                "CreerCorreo2": ej18,        
                                 }
                         ]
                         )
