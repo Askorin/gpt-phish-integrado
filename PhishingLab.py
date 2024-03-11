@@ -178,7 +178,7 @@ correof = st.form('colecting_form')
 submitted = correof.form_submit_button('Generar correo')
 if submitted:
         if agree:
-                with st.spinner('Generando correos, por favor espere...'):
+                with st.spinner('La generación del correo puede tardar de 40 segundos a 2 minutos, por favor espera...'):
                         time.sleep(1)
                         response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
@@ -219,7 +219,9 @@ if encuesta_lista :
                 encuestaf = st.form("datos_form")
                 correo_correcto1 = st.session_state['correo_generado1']
                 correo_correcto2 = st.session_state['correo_generado2']
+                correof.info("METODO 1:")
                 encuestaf.info(correo_correcto1)
+                correof.info("METODO 2:")
                 encuestaf.info(correo_correcto2)
                 ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
                 ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
@@ -278,5 +280,5 @@ if encuesta_lista :
                         streamlit_js_eval(js_expressions="parent.window.location.reload()")
         
         else: 
-                st.write('MALO')
+                st.write('¡Primero debes generar un correo!')
                 
