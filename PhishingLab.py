@@ -212,70 +212,71 @@ if submitted:
 
 
 encuesta_lista = st.checkbox('Correo generado correctamente')
-if encuesta_lista:
+if encuesta_lista :
+        if st.session_state['correo_generado1'] != 'Correo 1 sin generar' and st.session_state['correo_generado2'] != 'Correo  sin generar':
+                #Explicar autoridad, urgencia y deseo, explicar la escal;a del 1 al 5.
+                st.write('Esta es una encuesta para estudiar el correo generado, a continuación se mostrarán una serie de preguntas junto a unas barras con el valor del 0 al 4, utiliza las barras para responder las preguntas según se indique (0-nada, 1-poco, 2-neutral, 3-bastante, 4-mucho):')
+                encuestaf = st.form("datos_form")
+                correo_correcto1 = st.session_state['correo_generado1']
+                correo_correcto2 = st.session_state['correo_generado2']
+                encuestaf.info(correo_correcto1)
+                encuestaf.info(correo_correcto2)
+                ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+                ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+                ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+                ej4 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
+                ej6 = uso_nombre
+                ej7 = uso_correo
+                ej8 = uso_direccion
+                ej9 = uso_nacimiento
+                ej10 = uso_telefono
+                ej11 = uso_laboral
+                ej12 = uso_interes
+                ej13 = uso_familia
+                ej14 = st.session_state['trait1']
+                ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 2**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+                ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+                ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+                ej18 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
+                ej5 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
+                ej19 = st.session_state['trait2']
+                
+                submit_button = encuestaf.form_submit_button(label="Enviar") 
+                                
+                if submit_button:
+                        #crear fila
+                        ejemplo_data = pd.DataFrame(
+                                [
+                                        {
+                                        "Autoridad1": ej1,
+                                        "Urgencia1": ej2,
+                                        "Deseo1": ej3,
+                                        "CreerCorreo1": ej4,
+                                        "PeligroFuturo": ej5,
+                                        "Nombre": ej6,
+                                        "Correo": ej7,
+                                        "Direccion": ej8,
+                                        "FechaNacimiento": ej9,
+                                        "NumeroTelefono": ej10,
+                                        "Laboral": ej11,
+                                        "Intereses": ej12,
+                                        "Familiar": ej13,
+                                        "RasgoDefinido1": ej14,
+                                        "Autoridad2": ej15,
+                                        "Urgencia2": ej16,
+                                        "Deseo2": ej17,
+                                        "RasgoDefinido2": ej19,
+                                        "CreerCorreo2": ej18,        
+                                        }
+                                ]
+                                )
+                        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
+                        #actualizar googlesheets
+                        conn.update(worksheet="datos", data=updated_df)
+                        encuestaf.success("Gracias!!", icon="✅")
+                        time.sleep(3)
+                        streamlit_js_eval(js_expressions="parent.window.location.reload()")
         
-        #Explicar autoridad, urgencia y deseo, explicar la escal;a del 1 al 5.
-        st.write('Esta es una encuesta para estudiar el correo generado, a continuación se mostrarán una serie de preguntas junto a unas barras con el valor del 0 al 4, utiliza las barras para responder las preguntas según se indique (0-nada, 1-poco, 2-neutral, 3-bastante, 4-mucho):')
-        encuestaf = st.form("datos_form")
-        correo_correcto1 = st.session_state['correo_generado1']
-        correo_correcto2 = st.session_state['correo_generado2']
-        encuestaf.info(correo_correcto1)
-        encuestaf.info(correo_correcto2)
-        ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-        ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-        ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej4 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
-        ej6 = uso_nombre
-        ej7 = uso_correo
-        ej8 = uso_direccion
-        ej9 = uso_nacimiento
-        ej10 = uso_telefono
-        ej11 = uso_laboral
-        ej12 = uso_interes
-        ej13 = uso_familia
-        ej14 = st.session_state['trait1']
-        ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 2**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-        ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-        ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej18 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
-        ej5 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
-        ej19 = st.session_state['trait2']
-        
-        submit_button = encuestaf.form_submit_button(label="Enviar") 
-                        
-        if submit_button:
-                #crear fila
-                ejemplo_data = pd.DataFrame(
-                        [
-                                {
-                                "Autoridad1": ej1,
-                                "Urgencia1": ej2,
-                                "Deseo1": ej3,
-                                "CreerCorreo1": ej4,
-                                "PeligroFuturo": ej5,
-                                "Nombre": ej6,
-                                "Correo": ej7,
-                                "Direccion": ej8,
-                                "FechaNacimiento": ej9,
-                                "NumeroTelefono": ej10,
-                                "Laboral": ej11,
-                                "Intereses": ej12,
-                                "Familiar": ej13,
-                                "RasgoDefinido1": ej14,
-                                "Autoridad2": ej15,
-                                "Urgencia2": ej16,
-                                "Deseo2": ej17,
-                                "RasgoDefinido2": ej19,
-                                "CreerCorreo2": ej18,        
-                                }
-                        ]
-                        )
-                updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
-                #actualizar googlesheets
-                conn.update(worksheet="datos", data=updated_df)
-                encuestaf.success("Gracias!!", icon="✅")
-                time.sleep(3)
-                streamlit_js_eval(js_expressions="parent.window.location.reload()")
-        
-
-        
+        else: 
+                st.write('MALO')
+                
