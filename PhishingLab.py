@@ -22,7 +22,7 @@ home_getstarted = "Revise y acepte nuestros Términos de uso y Política de priv
 instrucciones1 = "1-Primero debes marcar qué datos son los más probables que filtres con facilidad en internet."
 instrucciones2 = "2-Una vez marcada las casillas deberás rellenar con los datos de la forma que se muestra en los ejemplos."
 instrucciones3 = "3-Ya con todos los datos listos presiona el botón de generar correo y espera a que se muestre en pantalla."
-instrucciones4 = "4-Una vez generado el correo verifica que se genero correctamente, hay ocasiones en las que puede que no se genere el correo de manera correcta, en caso de que no se genere como es deseado vuelve a presionar el botón de generar correo o intenta usar más datos, hay veces que los datos entregados son muy pocos y no se puede generar un correo consistente. "
+instrucciones4 = "4-Una vez generado el correo verifica que se generó correctamente, hay ocasiones en las que puede que no se genere el correo de manera correcta, en caso de que no se genere como es deseado vuelve a presionar el botón de generar correo o intenta usar más datos, hay veces que los datos entregados son muy pocos y no se puede generar un correo consistente. "
 instrucciones5 = "5-Ya con el correo generado de manera correcta marca la casilla de “Correo generado correctamente”, de esta forma se desplegará una ventana con una encuesta para evaluar el contenido del correo y la sensación generada."
 instrucciones6 = "6- Rellena la encuesta marcando las casillas según lo indicado y presiona el botón de enviar."
 instrucciones7 = "7- Una vez ya enviada la encuesta se almacenarán los datos para su estudio, muchas gracias por participar."
@@ -221,10 +221,10 @@ if encuesta_lista:
         correo_correcto2 = st.session_state['correo_generado2']
         encuestaf.info(correo_correcto1)
         encuestaf.info(correo_correcto2)
-        ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 1? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-        ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 1? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-        ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 1? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej4 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo del Metodo 1?', 0, 4, 1)
+        ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+        ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+        ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+        ej4 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
         ej6 = uso_nombre
         ej7 = uso_correo
         ej8 = uso_direccion
@@ -234,11 +234,11 @@ if encuesta_lista:
         ej12 = uso_interes
         ej13 = uso_familia
         ej14 = st.session_state['trait1']
-        ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el metodo 2? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-        ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el metodo 2? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-        ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el metodo 2? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-        ej18 = encuestaf.slider('¿Que tan probable es que creyeras el contenido del correo del Metodo 2?', 0, 4, 1)
-        ej5 = encuestaf.slider('¿Piensas que esto podría ser mas peligroso que el phishing tradicional?', 0, 4, 1)
+        ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 2**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+        ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+        ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+        ej18 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
+        ej5 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
         ej19 = st.session_state['trait2']
         
         submit_button = encuestaf.form_submit_button(label="Enviar") 
