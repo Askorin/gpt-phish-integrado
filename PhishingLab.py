@@ -198,7 +198,7 @@ if submitted:
                         correof.info("METODO 2:")
                         correof.info(response2[0])
         else:
-                with st.spinner('Generando correos, por favor espere...'):
+                with st.spinner('La generación del correo puede tardar de 40 segundos a 2 minutos, por favor espera...'):
                         time.sleep(1)
                         response="Debes aceptar los términos y condiciones!"
                         correof.info(response)
