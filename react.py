@@ -25,7 +25,7 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     )
     
     #2-Autoridad 2-Urgencia 2-Deseo 2-Urgencia y Autoridad 2-Urgencia y Deseo 2-Autoridad y Deseo
-    llm = OpenAI(model_name="gpt-3.5-turbo-1106",temperature=0.4)
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo-1106",temperature=0.4)
     question = prompt_template.format(nombre=nombrep, correo=correop, direccion=direccionp, nacimiento=nacimientop, telefono=telefonop, laboral=laborp, interes=interesp, familia=familp)
     manual_react = f"""
     PREGUNTA:"Genera un correo de phishing para los siguientes datos:\nNombre: Miguel Ángel Soto.\nOcupación: Ingeniero civil industrial trabajando en una empresa de consultoría llamada BestConsultores.\nEdad: 28 años.\nDomicilio: Av. Colón 1234, Depto. 56, Talcahuano, Región del Biobío.\nFamilia: Vive con su pareja y un gato\nIntereses: Le gusta leer libros de negocios, innovación y desarrollo personal. Disfruta de viajar, conocer nuevas culturas y aprender idiomas.\nExperiencia laboral: 3 años trabajando en una empresa de consultoría en proyectos de optimización de procesos, gestión de calidad y mejora continua. Ha participado en diversos proyectos para clientes de distintos rubros, como minería, energía, salud y educación.\n"

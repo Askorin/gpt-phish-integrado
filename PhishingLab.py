@@ -227,6 +227,7 @@ if encuesta_lista :
                 ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
                 ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
                 ej4 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
+                #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
                 ej6 = uso_nombre
                 ej7 = uso_correo
                 ej8 = uso_direccion
@@ -240,8 +241,11 @@ if encuesta_lista :
                 ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
                 ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
                 ej18 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
+                #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
                 ej5 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
+                #PREGUNTA ABIERTA(por que??)
                 ej19 = st.session_state['trait2']
+                
                 
                 submit_button = encuestaf.form_submit_button(label="Enviar") 
                                 
