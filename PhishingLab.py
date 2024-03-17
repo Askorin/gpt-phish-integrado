@@ -215,7 +215,7 @@ encuesta_lista = st.checkbox('Correo generado correctamente')
 if encuesta_lista :
         if st.session_state['correo_generado1'] != 'Correo 1 sin generar' and st.session_state['correo_generado2'] != 'Correo  sin generar':
                 #Explicar autoridad, urgencia y deseo, explicar la escal;a del 1 al 5.
-                st.write('Esta es una encuesta para estudiar el correo generado, a continuación se mostrarán una serie de preguntas junto a unas barras con el valor del 0 al 4, utiliza las barras para responder las preguntas según se indique (0-nada, 1-poco, 2-neutral, 3-bastante, 4-mucho):')
+                st.write('Esta es una encuesta para estudiar el correo generado, a continuación se mostrarán una serie de preguntas junto a unas barras con el valor del 0 al 4, **utiliza las barras para responder las preguntas según se indique (0-nada, 1-poco, 2-neutral, 3-bastante, 4-mucho)**:')
                 encuestaf = st.form("datos_form")
                 correo_correcto1 = st.session_state['correo_generado1']
                 correo_correcto2 = st.session_state['correo_generado2']
