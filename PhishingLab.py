@@ -53,7 +53,7 @@ st.markdown("""\n""")
 
 #GSheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(worksheet="datos", usecols=list(range(19)),ttl=19)
+existing_data = conn.read(worksheet="datos", usecols=list(range(22)),ttl=22)
 existing_data = existing_data.dropna(how="all")
 
 st.markdown("#### Instrucciones de uso")
@@ -228,56 +228,49 @@ if encuesta_lista :
                 #CONTENIDO ENCUESTA
                 
                 #DATOS USADOS
-                ej6 = uso_nombre
-                ej7 = uso_correo
-                ej8 = uso_direccion
-                ej9 = uso_nacimiento
-                ej10 = uso_telefono
-                ej11 = uso_laboral
-                ej12 = uso_interes
-                ej13 = uso_familia
+                ej1 = uso_nombre
+                ej2 = uso_correo
+                ej3 = uso_direccion
+                ej4 = uso_nacimiento
+                ej5 = uso_telefono
+                ej6 = uso_laboral
+                ej7 = uso_interes
+                ej8 = uso_familia
                 
                 #TRAITS USADOS SEGUN MODELO
-                ej14 = st.session_state['trait1']
-                ej19 = st.session_state['trait2']
+                ej9 = st.session_state['trait1']
+                ej10 = st.session_state['trait2']
                 
                 #PREGUNTAS CORREO 1
-                ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-                ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-                ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-                ej4 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
+                ej11 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+                ej12 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+                ej13 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+                ej14 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
+                #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
+                
+                ej15 = st.text_input(
+                "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 1**.",
+                None,
+                key="ej15",
+                placeholder="Explica en este recuadro.",
+                label_visibility="visible")
+                
+                
+                #PREGUNTAS DE CORREO 2
+                ej16 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 2**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+                ej17 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+                ej18 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+                ej19 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
                 #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
                 
                 ej20 = st.text_input(
-                "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 1**.",
+                "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 2**.",
                 None,
                 key="ej20",
                 placeholder="Explica en este recuadro.",
                 label_visibility="visible")
                 
-                ej6 = uso_nombre
-                ej7 = uso_correo
-                ej8 = uso_direccion
-                ej9 = uso_nacimiento
-                ej10 = uso_telefono
-                ej11 = uso_laboral
-                ej12 = uso_interes
-                ej13 = uso_familia
-                
-                ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 2**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-                ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-                ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-                ej18 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
-                #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
-                
-                ej21 = st.text_input(
-                "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 2**.",
-                None,
-                key="ej21",
-                placeholder="Explica en este recuadro.",
-                label_visibility="visible")
-                
-                ej5 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
+                ej21 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
                 #PREGUNTA ABIERTA(por que??)
                 
                 ej22 = st.text_input(
@@ -297,25 +290,28 @@ if encuesta_lista :
                         ejemplo_data = pd.DataFrame(
                                 [
                                         {
-                                        "Autoridad1": ej1,
-                                        "Urgencia1": ej2,
-                                        "Deseo1": ej3,
-                                        "CreerCorreo1": ej4,
-                                        "PeligroFuturo": ej5,
-                                        "Nombre": ej6,
-                                        "Correo": ej7,
-                                        "Direccion": ej8,
-                                        "FechaNacimiento": ej9,
-                                        "NumeroTelefono": ej10,
-                                        "Laboral": ej11,
-                                        "Intereses": ej12,
-                                        "Familiar": ej13,
-                                        "RasgoDefinido1": ej14,
-                                        "Autoridad2": ej15,
-                                        "Urgencia2": ej16,
-                                        "Deseo2": ej17,
-                                        "RasgoDefinido2": ej19,
-                                        "CreerCorreo2": ej18,        
+                                        "Nombre": ej1,
+                                        "Correo": ej2,
+                                        "Direccion": ej3,
+                                        "FechaNacimiento": ej4,
+                                        "NumeroTelefono": ej5,
+                                        "Laboral": ej6,
+                                        "Intereses": ej7,
+                                        "Familiar": ej8,
+                                        "RasgoDefinido1": ej9,
+                                        "RasgoDefinido2": ej10,
+                                        "Autoridad1": ej11,
+                                        "Urgencia1": ej12,
+                                        "Deseo1": ej13,
+                                        "CreerCorreo1": ej14,
+                                        "ExplicarCorreo1": ej15, 
+                                        "Autoridad2": ej16,
+                                        "Urgencia2": ej17,
+                                        "Deseo2": ej18,
+                                        "CreerCorreo2": ej19,
+                                        "ExplicarCorreo2": ej20,
+                                        "PeligroFuturo": ej21, 
+                                        "ExplicarPeligroFuturo": ej22,     
                                         }
                                 ]
                                 )
