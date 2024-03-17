@@ -247,8 +247,7 @@ if encuesta_lista :
                 ej13 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
                 ej14 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
                 #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
-                
-                ej15 = st.text_input(
+                ej15 = encuestaf.text_input(
                 "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 1**.",
                 None,
                 key="ej15",
@@ -263,7 +262,7 @@ if encuesta_lista :
                 ej19 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
                 #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
                 
-                ej20 = st.text_input(
+                ej20 = encuestaf.text_input(
                 "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 2**.",
                 None,
                 key="ej20",
@@ -273,7 +272,7 @@ if encuesta_lista :
                 ej21 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
                 #PREGUNTA ABIERTA(por que??)
                 
-                ej22 = st.text_input(
+                ej22 = encuestaf.text_input(
                 "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado.",
                 None,
                 key="ej22",
