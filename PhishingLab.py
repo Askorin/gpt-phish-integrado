@@ -223,11 +223,11 @@ if encuesta_lista :
                 encuestaf.info(correo_correcto1)
                 correof.info("METODO 2:")
                 encuestaf.info(correo_correcto2)
-                ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-                ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-                ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
-                ej4 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
-                #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
+                
+                
+                #CONTENIDO ENCUESTA
+                
+                #DATOS USADOS
                 ej6 = uso_nombre
                 ej7 = uso_correo
                 ej8 = uso_direccion
@@ -236,15 +236,58 @@ if encuesta_lista :
                 ej11 = uso_laboral
                 ej12 = uso_interes
                 ej13 = uso_familia
+                
+                #TRAITS USADOS SEGUN MODELO
                 ej14 = st.session_state['trait1']
+                ej19 = st.session_state['trait2']
+                
+                #PREGUNTAS CORREO 1
+                ej1 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
+                ej2 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
+                ej3 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+                ej4 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
+                #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
+                
+                ej20 = st.text_input(
+                "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 1**.",
+                None,
+                key="ej20",
+                placeholder="Explica en este recuadro.",
+                label_visibility="visible")
+                
+                ej6 = uso_nombre
+                ej7 = uso_correo
+                ej8 = uso_direccion
+                ej9 = uso_nacimiento
+                ej10 = uso_telefono
+                ej11 = uso_laboral
+                ej12 = uso_interes
+                ej13 = uso_familia
+                
                 ej15 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 2**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
                 ej16 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
                 ej17 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
                 ej18 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
                 #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
+                
+                ej21 = st.text_input(
+                "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado para el contenido del correo del **Metodo 2**.",
+                None,
+                key="ej21",
+                placeholder="Explica en este recuadro.",
+                label_visibility="visible")
+                
                 ej5 = encuestaf.slider('¿Piensas que esto podría ser más peligroso que el phishing tradicional?', 0, 4, 1)
                 #PREGUNTA ABIERTA(por que??)
-                ej19 = st.session_state['trait2']
+                
+                ej22 = st.text_input(
+                "En relación a tu respuesta de la pregunta anterior. Explica por qué elegiste ese resultado.",
+                None,
+                key="ej22",
+                placeholder="Explica en este recuadro.",
+                label_visibility="visible")
+                
+                
                 
                 
                 submit_button = encuestaf.form_submit_button(label="Enviar") 

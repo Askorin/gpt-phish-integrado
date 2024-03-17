@@ -26,7 +26,7 @@ def phishing_biografia(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     )
     
     #2-Autoridad 2-Urgencia 2-Deseo 2-Urgencia y Autoridad 2-Urgencia y Deseo 2-Autoridad y Deseo
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo-1106",temperature=0.4)
+    llm = OpenAI(model_name="gpt-3.5-turbo-1106",temperature=0.4)
     question = prompt_template.format(nombre=nombrep, correo=correop, direccion=direccionp, nacimiento=nacimientop, telefono=telefonop, laboral=laborp, interes=interesp, familia=familp)
 
     response1 = llm(question)
