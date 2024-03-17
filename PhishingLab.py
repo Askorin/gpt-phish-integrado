@@ -303,14 +303,14 @@ if encuesta_lista :
                                         "Urgencia1": ej12,
                                         "Deseo1": ej13,
                                         "CreerCorreo1": ej14,
-                                        "ExplicarCorreo1": ej15, 
+                                        "ExplicaCreerCorreo1": ej15, 
                                         "Autoridad2": ej16,
                                         "Urgencia2": ej17,
                                         "Deseo2": ej18,
                                         "CreerCorreo2": ej19,
-                                        "ExplicarCorreo2": ej20,
+                                        "ExplicaCreerCorreo2": ej20,
                                         "PeligroFuturo": ej21, 
-                                        "ExplicarPeligroFuturo": ej22,     
+                                        "ExplicaPeligroFuturo": ej22,     
                                         }
                                 ]
                                 )
