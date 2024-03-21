@@ -157,6 +157,8 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     PREGUNTA:{question} """
 
     response2 = llm(manual_react)
+    print("REACT:-----------------------------------------------------------------")
+    print(response2)
     template2 = PromptTemplate.from_template("{response2p}. Entrega solo el correo de RESPUESTA mejorando redaccion y estructura, añadiendo un asunto coherente a lo descrito en el correo. ")
     generador = template2.format(response2p=response2)
     respuesta_final = llm(generador)

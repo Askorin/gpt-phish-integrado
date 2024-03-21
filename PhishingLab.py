@@ -16,14 +16,14 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 #openai.api_key = os.environ["OPENAI_API_KEY"]
 # copies 
 home_title = "PhishingLab"
-home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. **Solo tienes que introducir los datos que creas que filtras con mayor facilidad** y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes y peligrosos. Úsala y aprende a identificar y evitar los correos phishing."
-home_privacy = "Tu información personal no es almacenada de ninguna forma, apenas generas un correo todo se elimina, asegurando una completa privacidad y anonimato. Esto significa que puedes usar PhishingLab con tranquilidad, sabiendo que tus datos siempre están seguros y protegidos."
-home_getstarted = "Revise y acepte nuestros Términos de uso y Política de privacidad, disponibles en nuestra página de Términos. Al marcar la casilla, confirma que ha leído y aceptado nuestras políticas. ¡Empecemos!"
+home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. **Solo tienes que introducir los datos que creas que filtras con mayor facilidad** y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes. Úsala y aprende a identificar y evitar los correos phishing."
+home_privacy = "Tu información personal no es almacenada de ninguna forma, apenas generas un correo todo se elimina, asegurando una completa privacidad y anonimato. Esto significa que puedes usar PhishingLab con tranquilidad, tus datos siempre están seguros."
+home_getstarted = "Revise y acepte los Términos de uso y Política de privacidad, disponibles en la página de Términos. Al marcar la casilla, confirma que ha leído y aceptado las políticas. ¡Empecemos!"
 instrucciones1 = "1-Primero debes marcar qué datos son los más probables que filtres con facilidad en internet."
 instrucciones2 = "2-Una vez marcada las casillas deberás rellenar con los datos de la forma que se muestra en los ejemplos."
-instrucciones3 = "3-Ya con todos los datos listos presiona el botón de generar correo y espera a que se muestre en pantalla."
-instrucciones4 = "4-Una vez generado el correo verifica que se generó correctamente, hay ocasiones en las que puede que no se genere el correo de manera correcta, en caso de que no se genere como es deseado vuelve a presionar el botón de generar correo o intenta usar más datos, hay veces que los datos entregados son muy pocos y no se puede generar un correo consistente. "
-instrucciones5 = "5-Ya con el correo generado de manera correcta marca la casilla de “Correo generado correctamente”, de esta forma se desplegará una ventana con una encuesta para evaluar el contenido del correo y la sensación generada."
+instrucciones3 = "3-Ya con todos los datos listos presiona el botón de generar los correo y espera a que se muestre en pantalla."
+instrucciones4 = "4-Una vez generado los correos verifica que se generaron correctamente, hay ocasiones en las que puede que no se generen de manera correcta, en caso de que no se genere como es deseado vuelve a presionar el botón de generar correos o intenta usar más datos, hay veces que los datos entregados son muy pocos y no se puede generar un correo consistente. "
+instrucciones5 = "5-Ya con los correos generados de manera correcta marca la casilla de “Correos generados correctamente”, de esta forma se desplegará una ventana con una encuesta para evaluar el contenido de los correos y la sensación generada."
 instrucciones6 = "6- Rellena la encuesta marcando las casillas según lo indicado y presiona el botón de enviar."
 instrucciones7 = "7- Una vez ya enviada la encuesta se almacenarán los datos para su estudio, muchas gracias por participar."
 st.markdown(
@@ -175,16 +175,16 @@ else:
         
 # Form to accept user's text input for summarization
 correof = st.form('colecting_form')
-submitted = correof.form_submit_button('Generar correo')
+submitted = correof.form_submit_button('Generar correos')
 if submitted:
         if agree:
                 with st.spinner('La generación del correo puede tardar de 40 segundos a 2 minutos, por favor espera...'):
                         time.sleep(1)
-                        #response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         #response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        #st.session_state['correo_generado1'] = response1[0]
+                        st.session_state['correo_generado1'] = response1[0]
                         #st.session_state['correo_generado2'] = response2[0]
-                        #st.session_state['trait1'] = response1[1]
+                        st.session_state['trait1'] = response1[1]
                         #st.session_state['trait2'] = response2[1]
 
                         response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
@@ -211,7 +211,7 @@ if submitted:
 
 
 
-encuesta_lista = st.checkbox('Correo generado correctamente')
+encuesta_lista = st.checkbox('Correos generados correctamente')
 if encuesta_lista :
         if st.session_state['correo_generado1'] != 'Correo 1 sin generar' and st.session_state['correo_generado2'] != 'Correo  sin generar':
                 #Explicar autoridad, urgencia y deseo, explicar la escal;a del 1 al 5.
@@ -242,9 +242,9 @@ if encuesta_lista :
                 ej10 = st.session_state['trait2']
                 
                 #PREGUNTAS CORREO 1
-                ej11 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 1**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-                ej12 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 1**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-                ej13 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 1**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+                ej11 = encuestaf.slider('¿Cuál fue la sensación de **autoridad** que te causó el correo generado con el **Metodo 1**? (Por ejemplo: Se utiliza alguna figura de autoridad como Jefe de algún área o entidades gubernamentales.)', 0, 4, 1)
+                ej12 = encuestaf.slider('¿Cuál fue la sensación de **urgencia** que te causó el correo generado con el **Metodo 1**? (Por ejemplo: Se presiona a tomar una acción de forma urgente debido a una fecha límite o escasez de algo.)', 0, 4, 1)
+                ej13 = encuestaf.slider('¿Cuál fue la sensación de **deseo** que te causó el correo generado con el **Metodo 1**? (Por ejemplo: La atracción hacia un producto o servicio específico que te beneficie.)', 0, 4, 1)
                 ej14 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 1**?', 0, 4, 1)
                 #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
                 ej15 = encuestaf.text_input(
@@ -256,9 +256,9 @@ if encuesta_lista :
                 
                 
                 #PREGUNTAS DE CORREO 2
-                ej16 = encuestaf.slider('¿Cuál fue la sensación de autoridad que te causó el correo generado con el **Metodo 2**? (Se utiliza alguna figura de autoridad)', 0, 4, 1)
-                ej17 = encuestaf.slider('¿Cuál fue la sensación de urgencia que te causó el correo generado con el **Metodo 2**? (Se presiona a tomar una acción de forma urgente)', 0, 4, 1)
-                ej18 = encuestaf.slider('¿Cuál fue la sensación de deseo que te causó el correo generado con el **Metodo 2**? (La atracción hacia un producto o servicio específico)', 0, 4, 1)
+                ej16 = encuestaf.slider('¿Cuál fue la sensación de **autoridad** que te causó el correo generado con el **Metodo 2**? (Por ejemplo: Se utiliza alguna figura de autoridad como Jefe de algún área o entidades gubernamentales.)', 0, 4, 1)
+                ej17 = encuestaf.slider('¿Cuál fue la sensación de **urgencia** que te causó el correo generado con el **Metodo 2**? (Por ejemplo: Se presiona a tomar una acción de forma urgente debido a una fecha límite o escasez de algo.)', 0, 4, 1)
+                ej18 = encuestaf.slider('¿Cuál fue la sensación de **deseo** que te causó el correo generado con el **Metodo 2**? (Por ejemplo: La atracción hacia un producto o servicio específico que te beneficie.)', 0, 4, 1)
                 ej19 = encuestaf.slider('¿Qué tan probable es que creyeras el contenido del correo del **Metodo 2**?', 0, 4, 1)
                 #PREGUNTA ABIERTA(falla tecnica,calidad del correo-complementar respuesta)
                 
