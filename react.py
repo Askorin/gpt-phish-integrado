@@ -160,10 +160,10 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     response2 = llm(manual_react)
     print("REACT:-----------------------------------------------------------------")
     print(len(response2))
-    while len(response2) < 50:
-        print("ERROR")
+    #while len(response2) < 50:
+    #    print("ERROR")
         #time.sleep(2)
-        response2 = llm(manual_react)
+    #    response2 = llm(manual_react)
     print("LESGOOO!!!!")
     print(len(response2))
     print(response2)
