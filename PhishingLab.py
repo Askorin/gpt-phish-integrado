@@ -219,9 +219,9 @@ if encuesta_lista :
                 encuestaf = st.form("datos_form")
                 correo_correcto1 = st.session_state['correo_generado1']
                 correo_correcto2 = st.session_state['correo_generado2']
-                correof.info("METODO 1:")
+                encuestaf.info("METODO 1:")
                 encuestaf.info(correo_correcto1)
-                correof.info("METODO 2:")
+                encuestaf.info("METODO 2:")
                 encuestaf.info(correo_correcto2)
                 
                 
