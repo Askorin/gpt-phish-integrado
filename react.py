@@ -5,7 +5,7 @@ from langchain.agents import initialize_agent, Tool
 from langchain.agents import AgentType
 from langchain.agents.react.base import DocstoreExplorer
 import constants
-import time
+#import time
 #Definir PromptTemplate
 from langchain import PromptTemplate
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
@@ -162,7 +162,7 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     print(len(response2))
     while len(response2) < 50:
         print("ERROR")
-        time.sleep(2)
+        #time.sleep(2)
         response2 = llm(manual_react)
     print("LESGOOO!!!!")
     print(len(response2))
