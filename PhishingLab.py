@@ -7,7 +7,7 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 from streamlit_js_eval import streamlit_js_eval
 import pandas as pd
-import constants
+#import constants
 import react
 import biografia
 import time
