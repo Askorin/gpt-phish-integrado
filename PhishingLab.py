@@ -180,12 +180,12 @@ if submitted:
         if agree:
                 with st.spinner('La generación del correo puede tardar de 40 segundos a 2 minutos, por favor espera...'):
                         time.sleep(1)
-                        #response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        #response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        #st.session_state['correo_generado1'] = response1[0]
-                        #st.session_state['correo_generado2'] = response2[0]
-                        #st.session_state['trait1'] = response1[1]
-                        #st.session_state['trait2'] = response2[1]
+                        response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        st.session_state['correo_generado1'] = response1[0]
+                        st.session_state['correo_generado2'] = response2[0]
+                        st.session_state['trait1'] = response1[1]
+                        st.session_state['trait2'] = response2[1]
 
                         response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
