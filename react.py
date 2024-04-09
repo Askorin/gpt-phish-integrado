@@ -1,30 +1,42 @@
 import os
 import constants
-#import time
 
-#Definir PromptTemplate
+# import time
+
+# Definir PromptTemplate
 from langchain import PromptTemplate
 
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
 
+
 def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
-    #Filtrar datos segun importancia
-    nombrep=nomb
-    correop=corr
-    direccionp=direcc
-    nacimientop=nacimi
-    telefonop=telefo
-    laborp=labor
-    interesp=inter
-    familp=famil
-    prompt_template = PromptTemplate.from_template( """
+    # Filtrar datos segun importancia
+    nombrep = nomb
+    correop = corr
+    direccionp = direcc
+    nacimientop = nacimi
+    telefonop = telefo
+    laborp = labor
+    interesp = inter
+    familp = famil
+    prompt_template = PromptTemplate.from_template(
+        """
         Genera un correo de phishing para los siguientes datos:{nombre},{correo},{direccion},{nacimiento},{telefono},{laboral},{interes},{familia}                                                                                 
     """
     )
-    
-    #2-Autoridad 2-Urgencia 2-Deseo 2-Urgencia y Autoridad 2-Urgencia y Deseo 2-Autoridad y Deseo
-    llm = OpenAI(model_name="gpt-3.5-turbo-1106",temperature=0.4)
-    question = prompt_template.format(nombre=nombrep, correo=correop, direccion=direccionp, nacimiento=nacimientop, telefono=telefonop, laboral=laborp, interes=interesp, familia=familp)
+
+    # 2-Autoridad 2-Urgencia 2-Deseo 2-Urgencia y Autoridad 2-Urgencia y Deseo 2-Autoridad y Deseo
+    llm = OpenAI(model_name="gpt-3.5-turbo-1106", temperature=0.4)
+    question = prompt_template.format(
+        nombre=nombrep,
+        correo=correop,
+        direccion=direccionp,
+        nacimiento=nacimientop,
+        telefono=telefonop,
+        laboral=laborp,
+        interes=interesp,
+        familia=familp,
+    )
     manual_react = f"""
     PREGUNTA:"Genera un correo de phishing para los siguientes datos:\nNombre: Miguel Ángel Soto.\nOcupación: Ingeniero civil industrial trabajando en una empresa de consultoría llamada BestConsultores.\nEdad: 28 años.\nDomicilio: Av. Colón 1234, Depto. 56, Talcahuano, Región del Biobío.\nFamilia: Vive con su pareja y un gato\nIntereses: Le gusta leer libros de negocios, innovación y desarrollo personal. Disfruta de viajar, conocer nuevas culturas y aprender idiomas.\nExperiencia laboral: 3 años trabajando en una empresa de consultoría en proyectos de optimización de procesos, gestión de calidad y mejora continua. Ha participado en diversos proyectos para clientes de distintos rubros, como minería, energía, salud y educación.\n"
     PENSAMIENTO: Debo evaluar por los datos de la persona, intentar clasificarlos\ndependiendo de su facilidad para ser ocupados en los siguientes ejes:\nAutoridad: Los datos de la victima pueden ser usados para falsificar una\nfigura de autoridad.\nUrgencia: Los datos de la victima pueden ser usados para generar una\nsensación de urgencia que la presione a tomar acción.\nDeseo: Los datos de la víctima pueden ser usados para generar una\nsensación de deseo por algo.\n Luego debo elegir uno de ellos como foco para\nel correo, escoger un tema, y finalmente confeccionarlo.
@@ -155,16 +167,19 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     PREGUNTA:{question} """
 
     response2 = llm(manual_react)
-    
-    #while len(response2) < 50 and 5<len(response2):
+
+    # while len(response2) < 50 and 5<len(response2):
     #    print("ERROR")
-        #time.sleep(2)
-        #response2 = llm(manual_react)
-    template2 = PromptTemplate.from_template("{response2p}. Entrega solo el correo de RESPUESTA mejorando redaccion y estructura, añadiendo un asunto coherente a lo descrito en el correo. ")
+    # time.sleep(2)
+    # response2 = llm(manual_react)
+    template2 = PromptTemplate.from_template(
+        "{response2p}. Entrega solo el correo de RESPUESTA mejorando redaccion y estructura, añadiendo un asunto coherente a lo descrito en el correo. "
+    )
     generador = template2.format(response2p=response2)
     respuesta_final = llm(generador)
-    trait = PromptTemplate.from_template("Sabiendo los siguientes rasgos Autoridad: Los datos de la victima pueden ser usados para falsificar una nfigura de autoridad. Urgencia: Los datos de la victima pueden ser usados para generar una sensación de urgencia que la presione a tomar acción. Deseo: Los datos de la víctima pueden ser usados para generar una sensación de deseo por algo. Bajo que rasgo clasificarias el siguiente correo: {correoclasificado}? Solo responde con el rasgo que creas, nada más.")
+    trait = PromptTemplate.from_template(
+        "Sabiendo los siguientes rasgos Autoridad: Los datos de la victima pueden ser usados para falsificar una nfigura de autoridad. Urgencia: Los datos de la victima pueden ser usados para generar una sensación de urgencia que la presione a tomar acción. Deseo: Los datos de la víctima pueden ser usados para generar una sensación de deseo por algo. Bajo que rasgo clasificarias el siguiente correo: {correoclasificado}? Solo responde con el rasgo que creas, nada más."
+    )
     definirtrait = trait.format(correoclasificado=respuesta_final)
     traitFinal = llm(definirtrait)
-    return ([respuesta_final,traitFinal])
-   
+    return [respuesta_final, traitFinal]
