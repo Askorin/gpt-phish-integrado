@@ -1,8 +1,4 @@
 import os
-import openai
-from langchain.llms import OpenAI
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 from streamlit_js_eval import streamlit_js_eval

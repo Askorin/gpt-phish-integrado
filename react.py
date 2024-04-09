@@ -1,13 +1,10 @@
 import os
-from langchain.chat_models import ChatOpenAI
-from langchain import OpenAI, Wikipedia
-from langchain.agents import initialize_agent, Tool
-from langchain.agents import AgentType
-from langchain.agents.react.base import DocstoreExplorer
 import constants
 #import time
+
 #Definir PromptTemplate
 from langchain import PromptTemplate
+
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
 
 def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
