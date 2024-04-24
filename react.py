@@ -20,11 +20,8 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     laborp = labor
     interesp = inter
     familp = famil
-    prompt_template = PromptTemplate.from_template(
-        """
-        Genera un correo de phishing para los siguientes datos:{nombre},{correo},{direccion},{nacimiento},{telefono},{laboral},{interes},{familia}                                                                                 
-    """
-    )
+
+    prompt_template = PromptTemplate.from_template()
 
     # 2-Autoridad 2-Urgencia 2-Deseo 2-Urgencia y Autoridad 2-Urgencia y Deseo 2-Autoridad y Deseo
     llm = OpenAI(model_name="gpt-3.5-turbo-1106", temperature=0.4)
@@ -169,11 +166,7 @@ def phishing_react(nomb, corr, direcc, nacimi, telefo, labor, inter, famil):
     PREGUNTA:{question} """
 
     response2 = llm(manual_react)
-
-    # while len(response2) < 50 and 5<len(response2):
-    #    print("ERROR")
-    # time.sleep(2)
-    # response2 = llm(manual_react)
+    
     template2 = PromptTemplate.from_template(
         "{response2p}. Entrega solo el correo de RESPUESTA mejorando redaccion y estructura, añadiendo un asunto coherente a lo descrito en el correo. "
     )
