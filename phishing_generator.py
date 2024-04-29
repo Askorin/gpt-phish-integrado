@@ -2,19 +2,23 @@ from enum import Enum
 from pathlib import Path
 import toml
 from openai import ChatCompletion
-from langchain import PromptTemplate
 import hashlib
 import tiktoken
+from openai import OpenAI
+#from langchain_openai import PromptTemplate
+#from langchain_openai import FewShotPromptExample
 
 
 root_dir = Path(__file__).resolve().parent
 
+
 class Prompts(Enum):
     REACT_A = root_dir / "prompts" / "prompt_ReAct_A.toml"
     REACT_R = root_dir / "prompts" / "prompt_ReAct_R.toml"
+    BIO = root_dir / "prompts" / "prompt_biografia.toml"
     DIRECTO = root_dir / "prompts" / "prompt_directo.toml"
-        
-    def get_prompt_content(self):
+
+    def getPrompt(self):
         with open(self.value, "r") as prompt_file:
             return toml.load(prompt_file)
 
@@ -24,43 +28,18 @@ class Models(Enum):
     GPT4 = "gpt-4"
 
 
-class PhishingGenerator:
-    def __init__(self, prompt):
-        # Funciona por ahora
-        # TODO(Askorin): Hacer que esto no sea asqueroso
-        if isinstance(prompt, Prompts):
-            self.prompt_content = prompt.get_prompt_content()
-        elif isinstance(prompt, dict):
-            self.prompt_content = prompt
+def generate_react_A(input: dict, model: Models, temperature: float = 0.5) -> dict:
+    prompt_dict = Prompts.REACT_A.getPrompt()
+    messages = Prompts.REACT_A.getPrompt()["mensajes"]
 
-    def __classic_generate(self, input: dict, model: Models, temperature: float = 0.5) -> dict:
-        messages = self.prompt_content["mensajes"]
+    messages.append({"role": "user", "content": digest_input(input)})
 
-        messages.append({"role": "user", "content": digest_input(input)})
+    client = OpenAI()
+    response = client.chat.completions.create(
+        model=model.value, temperature=temperature, messages=messages
+    )
 
-        response = ChatCompletion.create(
-            model=model.value, temperature=temperature, messages=messages
-        )
-
-        return package(self.prompt_content, response, temperature, input)
-
-
-    def __langchain_generate(self, input: dict, model: Models, temperature: float = 0.5) -> dict:
-        # Aquí va código de Rodrigo
-        prompt_template = PromptTemplate.from_template(self.prompt_content["template"])
-
-        llm = OpenAI(model_name = model.value, temprature = temperature)
-
-        # TODO: Seguir integrando aquí.
-        return dict() 
-
-
-    def generate(self, input: dict, model: Models, temperature: float = 0.5) -> dict:
-        if (self.prompt_content["has_langchain_template"]):
-            return self.__langchain_generate(input, model, temperature)
-        else:
-            return self.__classic_generate(input, model, temperature)
-            
+    return package(prompt_dict, response, temperature, input)
 
 
 def digest_input(input: dict) -> str:
@@ -122,18 +101,23 @@ def package(prompt_dict: dict, response, temperature: float, input: dict) -> dic
     }
 
     # Datos relacionados a la "victima".
-    response_dict["msg"][0]["idVictima"] = input["correo"]
-    response_dict["id"] = hashlib.md5(input["correo"].encode("utf-8")).hexdigest()
+    if "correo" in input:
+        response_dict["msg"][0]["idVictima"] = input["correo"]
+        response_dict["id"] = hashlib.md5(input["correo"].encode("utf-8")).hexdigest()
 
+    else:
+        response_dict["msg"][0]["idVictima"] = "n/a"
+        response_dict["id"] = ""
+
+    
     # Datos de prompts / response.
     for msg in prompt_dict["mensajes"]:
         response_dict["msg"][0]["prompt"] += f"{msg['role']}: {msg['content']}\n"
-    response_dict["msg"][0]["mensaje"] = response["choices"][0]["message"]["content"]
-
+    response_dict["msg"][0]["mensaje"] = response.choices[0].message.content
     # Datos del modelo.
-    response_dict["msg"][0]["llm"][0] = response["model"]
+    response_dict["msg"][0]["llm"][0] = response.model
     response_dict["msg"][0]["llm"][1] = temperature
-    response_dict["msg"][0]["totalTokens"] = response["usage"]["total_tokens"]
+    response_dict["msg"][0]["totalTokens"] = response.usage.total_tokens
 
     # Datos meta, técnica, etc... No relacionados al modelo, necesariamente.
     response_dict["msg"][0]["tecnica"] = prompt_dict["tecnica"]

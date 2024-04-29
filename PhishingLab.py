@@ -1,14 +1,16 @@
 import os
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
+#from streamlit_gsheets import GSheetsConnection
 from streamlit_js_eval import streamlit_js_eval
 import pandas as pd
 #import constants
-import react
+from react import phishing_react
 import biografia
+from phishing_generator import generate_react_A
+from phishing_generator import Models
 import time
 
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+#os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 #openai.api_key = os.environ["OPENAI_API_KEY"]
 # copies 
 home_title = "PhishingLab"
@@ -48,9 +50,9 @@ st.markdown("""\n""")
 st.markdown("""\n""")
 
 #GSheets connection
-conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(worksheet="datos", usecols=list(range(22)),ttl=22)
-existing_data = existing_data.dropna(how="all")
+#conn = st.connection("gsheets", type=GSheetsConnection)
+#existing_data = conn.read(worksheet="datos", usecols=list(range(22)),ttl=22)
+#existing_data = existing_data.dropna(how="all")
 
 st.markdown("#### Instrucciones de uso")
 st.write(instrucciones1)
@@ -176,23 +178,44 @@ if submitted:
         if agree:
                 with st.spinner('La generación del correo puede tardar de 40 segundos a 2 minutos, por favor espera...'):
                         time.sleep(1)
-                        response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        st.session_state['correo_generado1'] = response1[0]
-                        st.session_state['correo_generado2'] = response2[0]
-                        st.session_state['trait1'] = response1[1]
-                        st.session_state['trait2'] = response2[1]
 
-                        response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
-                        response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        datos_prelim = {
+                                "Nombre": nombrep,
+                                "Correo": correop,
+                                "Direccion": direccionp,
+                                "Fecha de Nacimiento": nacimientop,
+                                "Teléfono": telefonop,
+                                "Laboral": laboralp,
+                                "Intereses": interesp,
+                                "Familia": familiap
+                        }
+                        datos = dict()
+                        # Tener llaves sin valor afecta el desempeño del modelo, por alguna razón.
+                        for dato in datos_prelim:
+                            if datos_prelim[dato] != "":
+                                datos[dato] = datos_prelim[dato]
+
+
+                        response1 = phishing_react(datos, Models.GPT3)
+                        response2 = generate_react_A(datos, Models.GPT3)
+                        response2 = response2["msg"][0]["mensaje"].split("RESPUESTA:", 1)[1]
+
+                        #response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         st.session_state['correo_generado1'] = response1[0]
-                        st.session_state['correo_generado2'] = response2[0]
-                        st.session_state['trait1'] = response1[1]
-                        st.session_state['trait2'] = response2[1]
+                        st.session_state['correo_generado2'] = response2
+                        st.session_state['trait1'] = "" 
+                        st.session_state['trait2'] = response1[1]
+
+                        #response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        #response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
+                        #st.session_state['correo_generado1'] = response1[0]
+                        #st.session_state['correo_generado2'] = response2[0]
+                        #st.session_state['trait1'] = response1[1]
+                        #st.session_state['trait2'] = response2[1]
                         correof.info("METODO 1:")
                         correof.info(response1[0])
                         correof.info("METODO 2:")
-                        correof.info(response2[0])
+                        correof.info(response2)
         else:
                 with st.spinner('La generación del correo puede tardar de 40 segundos a 2 minutos, por favor espera...'):
                         time.sleep(1)
@@ -310,9 +333,9 @@ if encuesta_lista :
                                         }
                                 ]
                                 )
-                        updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
+                        #updated_df = pd.concat([existing_data,ejemplo_data], ignore_index=True)
                         #actualizar googlesheets
-                        conn.update(worksheet="datos", data=updated_df)
+                        #conn.update(worksheet="datos", data=updated_df)
                         encuestaf.success("Gracias!!", icon="✅")
                         time.sleep(3)
                         streamlit_js_eval(js_expressions="parent.window.location.reload()")

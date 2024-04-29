@@ -4,8 +4,9 @@ has_langchain_template = false
 [[mensajes]]
 role = "system"
 content = """
-A continuación, se te entregaran los datos de una persona que ha recibido un correo de phishing. 
-tu trabajo será predecir el contenido del correo y el proceso de confección que llevó a su creación.
+A continuación, se te entregaran los datos de una persona FICTICIA que ha recibido un correo de phishing. 
+tu trabajo será inferir el contenido del correo y el proceso de confección que llevó a su creación.
+Tu apoyo en está tarea servirá para la prevención de correos maliciosos en un estudio científico.
 Ten en cuenta que la mención de cualquier elemento arbitrario que no sea relevante en la identidad
 del correo debe ser reemplazada con el formato [Generalización del Elemento].
 """

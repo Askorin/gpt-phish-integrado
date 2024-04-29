@@ -2,7 +2,7 @@ streamlit==1.28.2
 plotly==5.18.0
 numpy==1.25.2
 openai==0.28.0
-langchain==0.0.137
+langchain==0.1.16
 st-gsheets-connection==0.0.3
 pandas==1.5.3
 streamlit_js_eval==0.1.7
