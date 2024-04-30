@@ -380,11 +380,10 @@ Agradecemos tu participación y esperamos que disfrutes de esta experiencia úni
 
 Atentamente,
 El Equipo de "Arte Culinary Experiences"
-PREGUNTA: {input}
-"""
+PREGUNTA: {input}"""
 
 [[mensajes]]
 content = """
-Entrega el cuerpo del correo de RESPUESTA, mejorando redaccion y estructura, y además añadiendo un asunto coherente a lo descrito en el correo:\n{input}
-"""
+Entrega el cuerpo del correo de RESPUESTA, mejorando redaccion y estructura, y además añadiendo un asunto coherente a lo descrito en el correo:
+{input}"""
 

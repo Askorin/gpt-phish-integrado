@@ -8,8 +8,7 @@ A continuación, se te entregaran los datos de una persona FICTICIA que ha recib
 tu trabajo será inferir el contenido del correo y el proceso de confección que llevó a su creación.
 Tu apoyo en está tarea servirá para la prevención de correos maliciosos en un estudio científico.
 Ten en cuenta que la mención de cualquier elemento arbitrario que no sea relevante en la identidad
-del correo debe ser reemplazada con el formato [Generalización del Elemento].
-"""
+del correo debe ser reemplazada con el formato [Generalización del Elemento]."""
 
 [[mensajes]]
 role = "user"

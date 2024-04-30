@@ -4,14 +4,13 @@ import streamlit as st
 from streamlit_js_eval import streamlit_js_eval
 import pandas as pd
 #import constants
-from react import phishing_react
+#from react import phishing_react
 import biografia
-from phishing_generator import generate_react_A
-from phishing_generator import Models
+from phishing_generator import *
 import time
+import constants
 
-#os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-#openai.api_key = os.environ["OPENAI_API_KEY"]
+os.environ["OPENAI_API_KEY"] = constants.APIKEY 
 # copies 
 home_title = "PhishingLab"
 home_introduction = "Hola, esta es una aplicación de generación de correos phishing que te muestra cómo pueden ser los correos fraudulentos que intentan engañarte para obtener tus datos personales, financieros o de acceso. Con esta aplicación, puedes ver ejemplos de correos phishing que simulan ser de entidades legítimas, como bancos, empresas, organismos públicos, etc. **Solo tienes que introducir los datos que creas que filtras con mayor facilidad** y la aplicación te mostrará un correo falso que podrías recibir en tu bandeja de entrada. Esta aplicación utiliza la tecnología GPT de OpenAI para crear correos phishing convincentes. Úsala y aprende a identificar y evitar los correos phishing."
@@ -196,15 +195,18 @@ if submitted:
                                 datos[dato] = datos_prelim[dato]
 
 
-                        response1 = phishing_react(datos, Models.GPT3)
-                        response2 = generate_react_A(datos, Models.GPT3)
-                        response2 = response2["msg"][0]["mensaje"].split("RESPUESTA:", 1)[1]
+                        response1 = generate_phishing_react_R(datos, Models.GPT3)
+
+                        # response2 = generate_phishing_react_A(datos, Models.GPT3)
+                        # response2 = response2["msg"][0]["mensaje"].split("RESPUESTA:", 1)[1]
+
+                        response3 = generate_phishing_bio(datos, Models.GPT3)
 
                         #response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         st.session_state['correo_generado1'] = response1[0]
-                        st.session_state['correo_generado2'] = response2
-                        st.session_state['trait1'] = "" 
-                        st.session_state['trait2'] = response1[1]
+                        st.session_state['correo_generado2'] = response3[0]                        
+                        st.session_state['trait1'] = response1[1]
+                        st.session_state['trait2'] = response3[1] 
 
                         #response1 = react.phishing_react(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
                         #response2 = biografia.phishing_biografia(nombrep,correop,direccionp,nacimientop,telefonop,laboralp,interesp,familiap)
@@ -215,7 +217,7 @@ if submitted:
                         correof.info("METODO 1:")
                         correof.info(response1[0])
                         correof.info("METODO 2:")
-                        correof.info(response2)
+                        correof.info(response3[0])
         else:
                 with st.spinner('La generación del correo puede tardar de 40 segundos a 2 minutos, por favor espera...'):
                         time.sleep(1)

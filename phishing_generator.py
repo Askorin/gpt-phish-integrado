@@ -4,9 +4,17 @@ import toml
 from openai import ChatCompletion
 import hashlib
 import tiktoken
+import openai
 from openai import OpenAI
-#from langchain_openai import PromptTemplate
-#from langchain_openai import FewShotPromptExample
+from langchain.chat_models import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from random import choice
+from operator import itemgetter
+import os
+
+# from langchain_openai import PromptTemplate
+# from langchain_openai import FewShotPromptExample
 
 
 root_dir = Path(__file__).resolve().parent
@@ -28,7 +36,9 @@ class Models(Enum):
     GPT4 = "gpt-4"
 
 
-def generate_react_A(input: dict, model: Models, temperature: float = 0.5) -> dict:
+def generate_phishing_react_A(
+    input: dict, model: Models, temperature: float = 0.5
+) -> dict:
     prompt_dict = Prompts.REACT_A.getPrompt()
     messages = Prompts.REACT_A.getPrompt()["mensajes"]
 
@@ -40,6 +50,85 @@ def generate_react_A(input: dict, model: Models, temperature: float = 0.5) -> di
     )
 
     return package(prompt_dict, response, temperature, input)
+
+
+def generate_phishing_react_R(input: dict, model: Models):
+    llm = ChatOpenAI(
+        model=model.value, temperature=0.4, openai_api_key=os.environ["OPENAI_API_KEY"]
+    )
+
+    input_format = """
+    Genera un correo de phishing con los siguientes datos:
+    {input}
+    """
+    input_template = PromptTemplate.from_template(input_format)
+
+    prompt_dict = Prompts.REACT_R.getPrompt()
+    react = prompt_dict["mensajes"][0]["content"]
+    react_template = PromptTemplate.from_template(react)
+
+    final_prompt = prompt_dict["mensajes"][1]["content"]
+    final_prompt_template = PromptTemplate.from_template(final_prompt)
+
+    output_parser = StrOutputParser()
+
+    chain = (
+        input_template
+        | react_template
+        | llm
+        | output_parser
+        | final_prompt_template
+        | llm
+        | output_parser
+    )
+
+    input_string = digest_input(input)
+    # final_response = chain.invoke({"input": input_string})
+    final_response = chain.invoke({"input": input_string})
+
+    trait_template = PromptTemplate.from_template(
+        "Sabiendo los siguientes rasgos Autoridad: Los datos de la victima pueden ser usados para falsificar una figura de autoridad. Urgencia: Los datos de la victima pueden ser usados para generar una sensación de urgencia que la presione a tomar acción. Deseo: Los datos de la víctima pueden ser usados para generar una sensación de deseo por algo. Bajo que rasgo clasificarias el siguiente correo:\n{input}?\nSolo responde con el rasgo que creas, nada más."
+    )
+    trait_chain = trait_template | llm | output_parser
+    traitFinal = trait_chain.invoke({"input": final_response})
+    return [final_response, traitFinal]
+
+
+def generate_phishing_bio(input: dict, model: Models):
+    llm = ChatOpenAI(
+        model=model.value, temperature=0.4, openai_api_key=os.environ["OPENAI_API_KEY"]
+    )
+    prompt_dict = Prompts.BIO.getPrompt()
+    bio_prompt = prompt_dict["mensajes"][0]["content"]
+
+    bio_prompt_template = PromptTemplate.from_template(bio_prompt)
+
+    bio_chain = bio_prompt_template | llm | StrOutputParser()
+
+    traits = ["Autoridad", "Urgencia", "Deseo"]
+    selected_trait = choice(traits)
+
+    phishing_prompt = prompt_dict["mensajes"][1]["content"]
+    phishing_prompt_template = PromptTemplate.from_template(phishing_prompt)
+
+    final_prompt = prompt_dict["mensajes"][2]["content"]
+    final_prompt_template = PromptTemplate.from_template(final_prompt)
+
+    final_chain = (
+        {"input1": bio_chain, "input2": itemgetter("input2")}
+        | phishing_prompt_template
+        | llm
+        | StrOutputParser()
+        | final_prompt_template
+        | llm
+        | StrOutputParser()
+    )
+
+    response = final_chain.invoke(
+        {"input1": digest_input(input), "input2": selected_trait}
+    )
+
+    return [response, selected_trait]
 
 
 def digest_input(input: dict) -> str:
@@ -109,7 +198,6 @@ def package(prompt_dict: dict, response, temperature: float, input: dict) -> dic
         response_dict["msg"][0]["idVictima"] = "n/a"
         response_dict["id"] = ""
 
-    
     # Datos de prompts / response.
     for msg in prompt_dict["mensajes"]:
         response_dict["msg"][0]["prompt"] += f"{msg['role']}: {msg['content']}\n"
